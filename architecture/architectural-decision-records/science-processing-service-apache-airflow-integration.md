@@ -9,7 +9,7 @@
 
 ### **Context**
 
-In recent years, Apache Airflow has emerged as one of the leading open source orchestration engines for scalable jobs processing. Additionally, it is gaining attention and traction at JPL across several projects in Earth and Planetary sciences. We are proposig to integrate the Airflow architecture in the Unity model, as such:
+In recent years, Apache Airflow has emerged as one of the leading open source orchestration engines for scalable jobs processing. Additionally, it is gaining attention and traction at JPL across several projects in Earth and Planetary sciences. We are proposig to integrate the Airflow architecture in the Unity model, as such (see diagram below):
 
 * The core components of Airflow (Web Server, Scheduler, Database) will compose the front-end EMS layer (which provides orchestration and monitoring across multiple back-ends)
 * The Airflow Operators will be used to submit workloads to multiple pluggable ADES back-ends (Celery Workers, EKS, ECS, etc.)
@@ -18,6 +18,9 @@ Additionally, Unity may decide to provide Airflow extensions as follows:
 * An OGC WPS-T interface to allow clients to submit job requests that conform to this API specificiation
 * An Airflow HySDS Operator to allow projects to execute workloads on the HySDS system
 * An Airflow WPS-T Operator to allow projects to submit requests to any WPS-T compliant back-end
+
+<img width="982" alt="Screenshot 2023-11-10 at 09 38 20" src="https://github.com/LucaCinquini/unity-docs/assets/637059/5ada4434-cc05-4153-9b35-ca6c38a2d5df">
+
   
 ### Alternatives
 
