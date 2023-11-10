@@ -17,21 +17,26 @@ In recent years, Apache Airflow has emerged as one of the leading open source or
 Additionally, Unity may decide to provide Airflow extensions as follows:
 * An OGC WPS-T interface to allow clients to submit job requests that conform to this API specificiation
 * An Airflow HySDS Operator to allow projects to execute workloads on the HySDS system
-* An Airflow WPS-T Operatorn to allow projects to subnmit requests to any WPS-T compliant back-end
+* An Airflow WPS-T Operator to allow projects to submit requests to any WPS-T compliant back-end
   
 ### Alternatives
 
-Option 1 - Expose Elastic Search cluster directly to user for custom metadata search
+The following architectural options have been investigated to offer users the ability to leverage the Airflow functionality
+(see the referenced presentation for details):
 
-Option 2 - Utilize Common Query Language (CQL) for custom metadata filtering **(proposed solution)**
+* Option 1: Integrate Airflow as simply a possible ADES back-end
+* Option 2: Fork and maintain CWL-Airflow as a possible ADES back-end
+* Option 3: Integrate Airflow as the Unity EMS layer and use Airflow operators to execute workloads on different ADES back-ends. This is the option that was chosen to provide the most functionality and long-term benefits.
 
 ### **Decision and Rationale**
 
-Ultimately, the decision to expose elastic search directly to the user, while preferable from a technical level and the ability to filter/aggregate searches using elastic search queries is ideal, the custom metadata and collection/item metadata are housed in multiple elastic search instances and cannot be cross queries. For now, the CQL filter will be used to hide the multi-es instances behind the scenes. We will revisit this if/when the Elastic Search database become unified.
-
-The proposed solution also does not require exposing (and thus understanding the auth model) of ES.&#x20;
-
-Furthermore, the ability to create STAC outputs from elasict search queries is not supported currently, and so some way of mapping the ES direct queries to elastic search qould be required to _use_ the results.
+We propose to choose Option 3 above for the following reasons:
+* It provides Unity with an EMS (orchestration) layer out-of-the-box, which otherwise Unity would have to custom develop (lengthy and costly)
+* It offers the full Airflow functionality to our users
+* It provides integration paths with the previous Unity APIs and workload engines, specifically:
+  * Supporting the OGC WPS-T spec
+  * Offering HySDS as processing engine
+* Overall, it allows users the flexibility to author their workflows in pure Python (Airflow), or CWL, and to request execution via the WPS-T or Airflow APIs
 
 ### **Impacts**
 
