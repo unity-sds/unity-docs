@@ -1,20 +1,24 @@
-# Data Services custom metadata search
-
-## Data Service: Custom Metadata Searchability
+## Science Processing Service: Apache Airflow Integration
 
 ### **Status**
 
-What is the status, such as proposed, accepted, rejected, deprecated, superseded, etc.? Maintain the Date in this section and previous statuses as well:
-
 | Status   | Date       |
 | -------- | ---------- |
-| Proposed | 10/12/2023 |
+| Proposed | 11/10/2023 |
 |          |            |
 
 ### **Context**
 
-As we begin to populate collection specific metadata within the data catalog, users want to be able to search for this information. We have 2 realistic options for this searching- one is to update or use the DAPA items search to create queries that can search custom metadata, the other is to expose the Elastic Search directly to users for searching and filtering on whatever metadata they prefer.
+In recent years, Apache Airflow has emerged as one of the leading open source orchestration engines for scalable jobs processing. Additionally, it is gaining attention and traction at JPL across several projects in Earth and Planetray sciences. We are proposig to integrate the Airflow architecture in the Unity model, as such:
 
+* The core components of Airflow (Web Server, Scheduler, Database) will compose the front-end EMS Unity layer (which provides orchestration and monitoring across multiple back-ends)
+* The Airflow Operators will be used to submit workloads to multiple pluggable ADES back-ends (Celery Workers, EKS, ECS, etc.)
+
+Additionally, Unity may decide to provide Airflow extensions as follows:
+* An OGC WPS-T interface to allow clients to submit job requests that conform to this API specificiation
+* An Airflow HySDS Operator to allow projects to execute workloads on the HySDS system
+* An Airflow WPS-T Operatorn to allow projects to subnmit requests to any WPS-T compliant back-end
+  
 ### Alternatives
 
 Option 1 - Expose Elastic Search cluster directly to user for custom metadata search
