@@ -40,18 +40,12 @@ We propose to choose Option 3 above for the following reasons:
 
 ### **Impacts**
 
-CQL will need to be documented and tested. Common filters (e.g. a single value, string, etc) might be pretty straight forward but complex metadata (e.g. nested JSON) might not be supported. This does allow us to migrate to different technologies (e.g. elastic search, databases, etc) in the future without impacting the users.
-
-The use of CQL will require development effort within the DAPA request and we're not sure this will be supported by the process mapper functionality.&#x20;
-
-The CQL development will also duplicate native capabilties of elastic search and this was a primary concern with the cost of development.
-
-Lastly, the results will be returned via STAC so this should integrate with stage in requests as well where needed.
+The development work of offering Airflow as part of the Unity infrastructure has been scoped and should not take more than a few months. Providing interoperability with WPS-T and HySDS will take longer, perhaps another few months. This architecture improvement will provide long term benefits and longevity to the Unity project.
 
 ### References
 
 (Optional) Any other references that make sense. Documentation links, other ADRs, etc.
 
-{% embed url="https://docs.up42.com/developers/api-assets/stac-cql" %}
+{% embed url="https://airflow.apache.org/" %}
 
-{% embed url="https://pystac-client.readthedocs.io/en/latest/tutorials/cql2-filter.html" %}
+{% embed url="https://docs.google.com/presentation/d/1ibGSqWkvZXVBxvkm08ZHAk4bjcs03oZYgFmV1DPPxWU/edit#slide=id.g291c340cd4b_0_0" %}
