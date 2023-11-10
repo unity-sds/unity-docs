@@ -9,9 +9,9 @@
 
 ### **Context**
 
-In recent years, Apache Airflow has emerged as one of the leading open source orchestration engines for scalable jobs processing. Additionally, it is gaining attention and traction at JPL across several projects in Earth and Planetray sciences. We are proposig to integrate the Airflow architecture in the Unity model, as such:
+In recent years, Apache Airflow has emerged as one of the leading open source orchestration engines for scalable jobs processing. Additionally, it is gaining attention and traction at JPL across several projects in Earth and Planetary sciences. We are proposig to integrate the Airflow architecture in the Unity model, as such:
 
-* The core components of Airflow (Web Server, Scheduler, Database) will compose the front-end EMS Unity layer (which provides orchestration and monitoring across multiple back-ends)
+* The core components of Airflow (Web Server, Scheduler, Database) will compose the front-end EMS layer (which provides orchestration and monitoring across multiple back-ends)
 * The Airflow Operators will be used to submit workloads to multiple pluggable ADES back-ends (Celery Workers, EKS, ECS, etc.)
 
 Additionally, Unity may decide to provide Airflow extensions as follows:
