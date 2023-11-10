@@ -46,6 +46,6 @@ The development work of offering Airflow as part of the Unity infrastructure has
 
 (Optional) Any other references that make sense. Documentation links, other ADRs, etc.
 
-{% embed url="https://airflow.apache.org/" %}
+[Apache Airflow](https://airflow.apache.org/")
 
-{% embed url="https://docs.google.com/presentation/d/1ibGSqWkvZXVBxvkm08ZHAk4bjcs03oZYgFmV1DPPxWU/edit#slide=id.g291c340cd4b_0_0" %}
+[SPS presentation to Unity (private)](https://docs.google.com/presentation/d/1ibGSqWkvZXVBxvkm08ZHAk4bjcs03oZYgFmV1DPPxWU/edit#slide=id.g291c340cd4b_0_0")
