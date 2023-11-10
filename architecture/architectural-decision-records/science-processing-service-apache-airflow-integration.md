@@ -34,8 +34,8 @@ We propose to choose Option 3 above for the following reasons:
 * It provides Unity with an EMS (orchestration) layer out-of-the-box, which otherwise Unity would have to custom develop (lengthy and costly)
 * It offers the full Airflow functionality to our users
 * It provides integration paths with the previous Unity APIs and workload engines, specifically:
-  * Supporting the OGC WPS-T spec
-  * Offering HySDS as processing engine
+  * Supporting the OGC WPS-T specification
+  * Offering HySDS as a possible processing engine
 * Overall, it allows users the flexibility to author their workflows in pure Python (Airflow), or CWL, and to request execution via the WPS-T or Airflow APIs
 
 ### **Impacts**
