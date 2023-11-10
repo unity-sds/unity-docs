@@ -24,7 +24,7 @@ Additionally, Unity may decide to provide Airflow extensions as follows:
 The following architectural options have been investigated to offer users the ability to leverage the Airflow functionality
 (see the referenced presentation for details):
 
-* Option 1: Integrate Airflow as simply a possible ADES back-end
+* Option 1: Integrate Airflow simply as a possible ADES back-end
 * Option 2: Fork and maintain CWL-Airflow as a possible ADES back-end
 * Option 3: Integrate Airflow as the Unity EMS layer and use Airflow operators to execute workloads on different ADES back-ends. This is the option that was chosen to provide the most functionality and long-term benefits.
 
