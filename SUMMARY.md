@@ -124,7 +124,7 @@
     * [Users Guide](developer-docs/science-processing/docs/users-guide/README.md)
       * [Tutorial: Register and Execute a CWL Workflow](developer-docs/science-processing/docs/users-guide/tutorial-register-and-execute-a-cwl-workflow.md)
     * [Developers Guide](developer-docs/science-processing/docs/developers-guide.md)
-      * [Tutorial: Register, Execute, and Unregister a Process using the OGC API - Processes](developer-docs/science-processing/docs/developers-guide/tutorial-register-execute-and-unregister-a-process-using-the-ogc-api-processes.md)
+      * [Tutorial: Deploy, Execute, and Undeploy a Process using the OGC API - Processes](developer-docs/science-processing/docs/developers-guide/tutorial-deploy-execute-and-undeploy-a-process-using-the-ogc-api-processes.md)
     * [Admin Guide](developer-docs/science-processing/docs/admin-guide/README.md)
       * [🧱 SPS Deployment with Terraform](developer-docs/science-processing/docs/admin-guide/sps-deployment-with-terraform.md)
       * [🧱 Interacting with an Existing SPS Deployment](developer-docs/science-processing/docs/admin-guide/interacting-with-an-existing-sps-deployment.md)
