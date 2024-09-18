@@ -97,13 +97,13 @@ description: >-
     * connect to instance via AWS SSM connection
     * `sudo su - ubuntu`
     * `cd unity-cs-infra/nightly_tests ; git pull`
-    * `./run.sh --destroy false --run-tests false --project-name`` `<mark style="color:blue;">`<PROJECT>`</mark>` ``--venue-name`` `<mark style="color:green;">`<VENUE>`</mark>
-      * NOTE: If this is the first time deploying to this AWS account, you may have to manually enter a few SSM parameters such as:
-        * `/unity/cs/github/username`
-        * `/unity/cs/github/useremail`
-        * `/unity/cs/githubtoken`
-        * `/unity/ci/slack-web-hook-url`
-        * PLEASE CONSULT THE MDPS U-CS Team to determine what values to use, if you are unsure.
+    * `./run.sh --destroy false --run-tests false --project-name PROJECT --venue-name VENUE`
+    * NOTE: If this is the first time deploying to this AWS account, you may have to manually enter a few SSM parameters such as:
+      * `/unity/cs/github/username`
+      * `/unity/cs/github/useremail`
+      * `/unity/cs/githubtoken`
+      * `/unity/ci/slack-web-hook-url`
+      * PLEASE CONSULT THE MDPS U-CS Team to determine what values to use, if you are unsure.
     * Make sure to copy the URL of the Management Console that gets printed to the console, as part of running the above command.  If any issues or errors encountered, see below "Debugging Management Console" section.
     * **OPTIONAL STEPS IF YOU NEED TO DESTROY the Venue Infrastructure:**
       * Run the following on the bastion host:
