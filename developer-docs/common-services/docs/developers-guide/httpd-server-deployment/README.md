@@ -37,6 +37,7 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
 <pre><code>sudo su - ubuntu
 <strong>sudo apt update
 </strong>sudo apt install apache2
+sudo apt-get install libapache2-mod-auth-openidc
 </code></pre>
 
 3. Enable Apache2 modules with the following commands:
@@ -50,6 +51,7 @@ sudo a2enmod  proxy_http
 sudo a2enmod  proxy_wstunnel
 sudo a2enmod  ssl
 sudo a2enmod  rewrite
+sudo a2enmod  auth_openidc
 ```
 
 6. Generate self-signed SSL certificates with the following command:
@@ -165,19 +167,9 @@ If the application/website hidden behind the proxy does not have sone of the  pa
 
 [https://httpd.apache.org/docs/2.4/rewrite/intro.html](https://httpd.apache.org/docs/2.4/rewrite/intro.html)
 
-## &#x20;How to install and enable mod\_auth\_openidc?
+Example mod\_auth\_openidc Configuration\
 
-To use Cognito authentication with Apache httpd server, it is required to use the module called mod\_auth\_openidc. \
-\
-You can install and enable mod\_auth\_openidc as follows.
 
-```
-sudo apt-get install libapache2-mod-auth-openidc
-```
-
-```
-sudo a2enmod auth_openidc
-```
 
 The following HTTPD site configuration shows an example showing how to use mod\_auth\_openidc with Cognito (Also, the  [Shared Services HTTPD Site Configurations](shared-services-httpd-site-configurations.md) shows the exact configuration template used in Unity with Cognito specific variables).\
 
