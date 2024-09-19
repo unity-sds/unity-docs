@@ -34,11 +34,12 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
 2. Connect to the EC2 instance with Session Manager.
 3. Install Apache 2 (The new Ubuntu version of HTTPD) on Ubuntu as follows:
 
-<pre><code>sudo su - ubuntu
-<strong>sudo apt update
-</strong>sudo apt install apache2
+```
+sudo su - ubuntu
+sudo apt update
+sudo apt install apache2
 sudo apt-get install libapache2-mod-auth-openidc
-</code></pre>
+```
 
 3. Enable Apache2 modules with the following commands:
 
