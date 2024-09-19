@@ -9,12 +9,29 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
 ## The steps to deploy HTTPD on EC2
 
 1. Create a new security group (E.g.: httpd-sec-group) with only traffic allowed from port 22.
-2. Launch an Ubuntu based EC2 instance with,
-
-&#x20;      \- The AMI "MCP Ubuntu 20.04 CSET 20240515T143543"
-
-&#x20;      \- Size of the EC2 instance can be Micro (or larger if it is required to handle many requests)
-
+2. Launch a new EC2 that will house HTTPD:
+   * Create EC2 instance with the following configuration:
+     * **Name of instance:**
+       * Use `shared-services-httpd`
+     * **AMI / instance type**:
+       * Get the AMI ID to use, by opening another tab, and copying the AMI specified in the `/mcp/amis/ubuntu2004-cset` SSM param
+       * Go to "My AMIs" --> "Shared With Me" --> enter AMI ID in the drop-down text box
+       * use a `t2.large` instance.
+     * **Key Pair:**
+       * If a key pair doesn't already exist, create one in the format `shared-services-httpd-pem` (do this in another tab first)
+       * select keypair (use "Select Existing Keypair") to use (create a new one and save it for future use)
+     * **Networking:**
+       * Make sure to select a private subnet (under the VPC setting)
+     * **Security Group:**
+       * If an existing `shared-services-httpd-sg` security doesn't already exist, then create one. It should have:
+         * INCOMING CONNECTIONS:
+           * 80, 22, 443
+         * OUTGOING CONNECTIONS:
+           * open custom TCP for 443 to anywhere, and 80 to anywhere
+       * Select the `shared-services-httpd-sg` security group.
+     * Under Advanced, select an IAM Instance Profile of `MCP-SSM-CloudWatch`
+     * launch instance
+       * NOTE: if this is the first time deploying to this AWS account, you may need to click on the error link and subscript/accept the Ubuntu Pro FIPS 20.04 LTS agreement, then click re-try on the launch instance.
 3. Connect to the EC2 instance with Session Manager.
 4. Install Apache 2 (The new Ubuntu version of HTTPD) on Ubuntu as follows:
 
