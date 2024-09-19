@@ -8,8 +8,7 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
 
 ## The steps to deploy HTTPD on EC2
 
-1. Create a new security group (E.g.: httpd-sec-group) with only traffic allowed from port 22.
-2. Launch a new EC2 that will house HTTPD:
+1. Launch a new EC2 that will house HTTPD:
    * Create EC2 instance with the following configuration:
      * **Name of instance:**
        * Use `shared-services-httpd`
@@ -32,18 +31,18 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
      * Under Advanced, select an IAM Instance Profile of `MCP-SSM-CloudWatch`
      * launch instance
        * NOTE: if this is the first time deploying to this AWS account, you may need to click on the error link and subscript/accept the Ubuntu Pro FIPS 20.04 LTS agreement, then click re-try on the launch instance.
-3. Connect to the EC2 instance with Session Manager.
-4. Install Apache 2 (The new Ubuntu version of HTTPD) on Ubuntu as follows:
+2. Connect to the EC2 instance with Session Manager.
+3. Install Apache 2 (The new Ubuntu version of HTTPD) on Ubuntu as follows:
 
-```
-sudo apt update
-sudo apt install apache2
-```
+<pre><code>sudo su - ubuntu
+<strong>sudo apt update
+</strong>sudo apt install apache2
+</code></pre>
 
 3. Enable Apache2 modules with the following commands:
 
 ```
-sudo a2enmod  http
+sudo a2enmod  http2
 sudo a2enmod  headers
 sudo a2enmod  proxy
 sudo a2enmod  proxy_html
