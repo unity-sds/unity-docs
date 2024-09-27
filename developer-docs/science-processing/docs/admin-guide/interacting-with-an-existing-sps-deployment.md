@@ -36,22 +36,19 @@ Note: this is the only step needed if you only want to interact wit the existing
 
 You must re-initialize the Terraform state to reference the proper file on S3. You must also be cognizant of the convention used to name the workspaces, which is:
 
-* For the EKS step: WORKSPACE=
+* For the EKS step: export WORKSPACE=${PROJECT}-${VENUE}-sps-eks
+* For the Karpenter step: export WORKSPACE=${PROJECT}-${VENUE}-sps-karpenter
+* For the Airflow step: export WORKSPACE=${PROJECT}-${VENUE}-sps (no trailing "${COMPONENT})
 
 This needs to happen separately for each component (eks, karpenter or airflow) that you want to update.
 
 * cd unity-sps/terraform-unity/modules/terraform-unity-sps-eks
   * or cd unity-sps/terraform-unity/modules/terraform-unity-sps-karpenter
   * or cd unity-sps/terraform-unity
-* export COMPONENT=eks
-  * or export COMPONENT=karpenter
-  * or export COMPONENT=airflow
 * export BUCKET=\<bucket>
   * Example: export BUCKET=unity-unity-dev-bucket
-* export KEY=sps/tfstates/${PROJECT}-${VENUE}-${SERVICE\_AREA}-${COMPONENT}-${DEPLOYMENT}-${COUNTER}.tfstate
-* echo $KEY
-  * Make sure that the value of $KEY is what you expect
-* terraform init -reconfigure -backend-config="bucket=$BUCKET" -backend-config="key=$KEY"
+* terraform init -reconfigure -backend-config="bucket=$BUCKET"
+  * Select the proper workspace according to the listing above
 
 ## Step 3: Reference the proper Terraform config file
 
