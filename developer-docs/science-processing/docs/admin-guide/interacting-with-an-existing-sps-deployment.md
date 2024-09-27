@@ -10,12 +10,15 @@ Administrators can interact with an existing SPS deployment (perhaps performed b
 * Renew the AWS credentials for the appropriate MCP venue, adding them to \~/.aws/credentials
 * Define environmental variables to point to the desired SPS deployment:
   * export PROJECT=\<project>&#x20;
+    * Example: PROJECT=unity
+    * Example: PROJECT=unity-emit
+    * Example: PROJECT=unity-luca-1
   * export SERVICE\_AREA=sps
   * export VENUE=\<venue>
-  * export DEPLOYMENT=\<deployment>
-  * export COUNTER=\<counter>
-  * export CLUSTER\_NAME=${PROJECT}-${VENUE}-sps-eks-${DEPLOYMENT}-${COUNTER}
-    * Example: export CLUSTER\_NAME=unity-dev-sps-eks-nightly-2
+    * Examples: VENUE=dev, test, ops
+  * export CLUSTER\_NAME=${PROJECT}-${VENUE}-sps-eks
+    * Example: export CLUSTER\_NAME=unity-dev-sps-eks
+    * Example: export CLUSTER\_NAME=unity-emit-dev-sps-eks
 
 ## Step 1: Generate a new KUBECONFIG file
 
@@ -31,7 +34,11 @@ Note: this is the only step needed if you only want to interact wit the existing
 
 ## Step 2: Re-Initialize the Terraform State
 
-You must re-initialize the Terraform state to reference the proper file on S3. This needs to happen separately for each component (eks, karpenter or airflow) that you want to update.
+You must re-initialize the Terraform state to reference the proper file on S3. You must also be cognizant of the convention used to name the workspaces, which is:
+
+* For the EKS step: WORKSPACE=
+
+This needs to happen separately for each component (eks, karpenter or airflow) that you want to update.
 
 * cd unity-sps/terraform-unity/modules/terraform-unity-sps-eks
   * or cd unity-sps/terraform-unity/modules/terraform-unity-sps-karpenter
