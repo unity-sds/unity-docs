@@ -19,23 +19,12 @@ description: Procedure for updating a venue deployment
     7. `cd /etc/apache2/sites-enabled`
     8. `sudo vi unity-cs.conf`
     9. TODO: Link in future script that creates/modifies HTTPD shared services configuration.
-    10. Edit the file to conform to the [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/developers-guide/httpd-server-deployment/shared-services-httpd-site-configurations), to add a block similar to:
+    10. Edit the file to conform to the [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/developers-guide/httpd-server-deployment/shared-services-httpd-site-configurations). Typically, all you would have to do is update the value circled below:\
 
-    ```
-    RewriteCond %{HTTP:Connection} Upgrade [NC]
-    RewriteCond %{HTTP:Upgrade} websocket [NC]
-    RewriteCond %{REQUEST_URI} "/emit/dev/"
-    RewriteRule /emit/dev/(.*) ws://emit-dev-httpd-alb-875152633.us-west-2.elb.amazonaws.com:8080/$1 [P,L] [END]
 
-    <Location "/emit/dev/">
-        ProxyPreserveHost on
-        AuthType openid-connect
-        Require valid-user
-        
-        ProxyPass "http://emit-dev-httpd-alb-875152633.us-west-2.elb.amazonaws.com:8080/emit/dev/"
-        ProxyPassReverse "http://emit-dev-httpd-alb-875152633.us-west-2.elb.amazonaws.com:8080/emit/dev/"
-    </Location>
-    ```
+        <figure><img src="../../../../../.gitbook/assets/Screenshot 2024-10-01 at 1.37.16 PM.png" alt=""><figcaption></figcaption></figure>
+
+
 
 
 5. Restart HTTPD:\

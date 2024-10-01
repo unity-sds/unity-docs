@@ -69,8 +69,8 @@ description: >-
           * Use the format:
             * &#x20;`unity-`<mark style="color:blue;">`<PROJECT>`</mark>`-`<mark style="color:green;">`<VENUE>`</mark>`-cs-management_console-bastion`
         * **AMI / instance type**:&#x20;
-          * Get the AMI ID to use, by opening another tab, and copying the AMI specified in the `/mcp/amis/ubuntu2004-cset` SSM param
-          * Go to "My AMIs" --> "Shared With Me" --> enter AMI ID in the drop-down text box
+          * Get the AMI ID to use, by opening another tab, going to "Systems Manager -> Parameter Store", searching for the `/mcp/amis/ubuntu2004-cset` parameter, and copying the value in that parameter.
+          * Go to "My AMIs" --> "Shared With Me", click in the AMI box, and paste in the AMI ID in the drop-down text box
           * use a `t2.micro` instance
         * **Key Pair:**&#x20;
           * If a key pair doesn't already exist, create one in the format `unity-`<mark style="color:blue;">`<PROJECT>`</mark>`-`<mark style="color:green;">`<VENUE>`</mark>`-bastion-pem` (do this in another tab first)
@@ -84,7 +84,7 @@ description: >-
             * OUTGOING CONNECTIONS:
               * open custom TCP for 443 to anywhere, and 80 to anywhere
           * Select the `mc-bastion-sg` security group.
-        * Under Advanced, select an IAM Instance Profile of `Unity-CS_Service_Role-instance-profile`
+        * Under "Advanced Details", select an IAM Instance Profile of `Unity-CS_Service_Role-instance-profile`
         * launch instance
           * NOTE: if this is the first time deploying to this AWS account, you may need to click on the error link and subscript/accept the Ubuntu Pro FIPS 20.04 LTS agreement, then click re-try on the launch instance.
         * Connect to instance
