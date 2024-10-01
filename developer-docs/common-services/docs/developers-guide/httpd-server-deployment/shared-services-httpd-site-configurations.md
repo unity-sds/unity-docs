@@ -67,6 +67,7 @@ This template has,
     OIDCRedirectURI ${UNITY_OIDC_REDIRECT_URI}
     OIDCCryptoPassphrase ${UNITY_OIDC_OIDC_CRYPTO_PASSPHRASE}
  
+    RewriteEngine On
  
     #############################################################################
     # Location blocks and optional rewrite rules for venues and shared services
@@ -81,7 +82,6 @@ This template has,
 </strong>        Define VENUE_ALB_HOST ${HOST}
         Define VENUE_ALB_PORT 8080
         Define VENUE_ALB_PATH ${PATH}
-        RewriteEngine On
         RewriteCond %{HTTP:Connection} Upgrade [NC]
         RewriteCond %{HTTP:Upgrade} websocket [NC]
         RewriteCond %{REQUEST_URI} "${VENUE_ALB_PATH}"
