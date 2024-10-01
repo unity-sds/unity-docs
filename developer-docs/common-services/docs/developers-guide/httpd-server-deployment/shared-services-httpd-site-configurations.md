@@ -366,6 +366,28 @@ This template has,
        ProxyPassReverse http://asips-int-httpd-alb-********.us-west-2.elb.amazonaws.com:8080/asips/int/
     </Location>
 
+    #
+    # emit/dev
+    #
+    Define VENUE_ALB_HOST emit-dev-httpd-alb-875152633.us-west-2.elb.amazonaws.com
+    Define VENUE_ALB_PORT 8080
+    Define VENUE_ALB_PATH /emit/dev/
+    #RewriteEngine On
+    RewriteCond %{HTTP:Connection} Upgrade [NC]
+    RewriteCond %{HTTP:Upgrade} websocket [NC]
+    RewriteCond %{REQUEST_URI} "${VENUE_ALB_PATH}"
+    RewriteRule ${VENUE_ALB_PATH}(.*) ws://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}$1 [P,L] [END]
+
+    <Location "${VENUE_ALB_PATH}">
+       ProxyPreserveHost on
+       AuthType openid-connect
+       Require valid-user
+
+       # Added to point to httpd within the venue account
+       ProxyPass "http://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}"
+       ProxyPassReverse "http://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}"
+       #RequestHeader   set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+    </Location>
  
     <Location /data>
        ProxyPreserveHost on
