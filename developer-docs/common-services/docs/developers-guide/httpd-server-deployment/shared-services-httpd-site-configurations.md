@@ -76,27 +76,27 @@ This template has,
      # repeated based on a number of paths and URLs available. At the moment this section 
      # should be added manually. The next section of this page shows more concrete examples
      # of this configuration block in Dev, Test and Production environments. 
-     FOR EACH ${PATH},${URL} in (('/unity/dev',ALB-URL), ('/galen/dev1',ALB-URL2), ...):
+     FOR EACH ${PATH},${HOST} in ( ('/unity/dev/',ALB-HOST), ('/galen/dev1/',ALB-HOST), ...):
 <strong>     {
-</strong>            # Rewrite rules are optional and the following code block is a common
-            # rewrite rules block
-            RewriteEngine On
-            RewriteCond %{HTTP:Connection} Upgrade [NC]
-            RewriteCond %{HTTP:Upgrade} websocket [NC]
-            RewriteCond %{REQUEST_URI} "${PATH}"
-            RewriteRule ${PATH}(.*) ws://${URL}${PATH}$1 [P,L] [END]
-        
-            # The location blocks are required to integrate paths with backend URLs
-            &#x3C;Location "${PATH}">
-               ProxyPreserveHost on
-               AuthType openid-connect
-               Require valid-user
-        
-               # Added to point to httpd within the unity-venue-dev account
-               ProxyPass "${URL}${PATH}"
-               ProxyPassReverse "${URL}${PATH}"
-            &#x3C;/Location>
-        
+</strong>        Define VENUE_ALB_HOST ${HOST}
+        Define VENUE_ALB_PORT 8080
+        Define VENUE_ALB_PATH ${PATH}
+        RewriteEngine On
+        RewriteCond %{HTTP:Connection} Upgrade [NC]
+        RewriteCond %{HTTP:Upgrade} websocket [NC]
+        RewriteCond %{REQUEST_URI} "${VENUE_ALB_PATH}"
+        RewriteRule ${VENUE_ALB_PATH}(.*) ws://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}$1 [P,L] [END]
+
+        &#x3C;Location "${VENUE_ALB_PATH}">
+           ProxyPreserveHost on
+           AuthType openid-connect
+           Require valid-user
+
+           # Added to point to httpd within the venue account
+           ProxyPass "http://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}"
+           ProxyPassReverse "http://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}"
+           RequestHeader     set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+        &#x3C;/Location>
      }
  
 &#x3C;/VirtualHost>
