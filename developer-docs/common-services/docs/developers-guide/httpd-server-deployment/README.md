@@ -15,7 +15,7 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
      * **AMI / instance type**:
        * Get the AMI ID to use, by opening another tab, and copying the AMI specified in the `/mcp/amis/ubuntu2004-cset` SSM param
        * Go to "My AMIs" --> "Shared With Me" --> enter AMI ID in the drop-down text box
-       * use a `t2.large` instance.
+       * use a `t3.large` instance.
      * **Key Pair:**
        * If a key pair doesn't already exist, create one in the format `shared-services-httpd-pem` (do this in another tab first)
        * select keypair (use "Select Existing Keypair") to use (create a new one and save it for future use)
@@ -24,11 +24,11 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
      * **Security Group:**
        * If an existing `shared-services-httpd-sg` security doesn't already exist, then create one. It should have:
          * INCOMING CONNECTIONS:
-           * 80, 22, 443
+           * 443 -- from the security group of the Shared services ALB (should be called `ucs-httpd-alb-sec-group`)
          * OUTGOING CONNECTIONS:
-           * open custom TCP for 443 to anywhere, and 80 to anywhere
+           * open custom HTTPS for 443 to anywhere, and HTTP 80 to `Anywhere-IPv4`
        * Select the `shared-services-httpd-sg` security group.
-     * Under Advanced, select an IAM Instance Profile of `MCP-SSM-CloudWatch`
+     * Under "Advanced Details", select an IAM Instance Profile of `MCP-SSM-CloudWatch`
      * launch instance
        * NOTE: if this is the first time deploying to this AWS account, you may need to click on the error link and subscript/accept the Ubuntu Pro FIPS 20.04 LTS agreement, then click re-try on the launch instance.
 2. Connect to the EC2 instance with Session Manager.
@@ -123,7 +123,7 @@ Detailed instructions on creating an Application Load Balancer available at: [ht
 
 6. Create a new site file at sites-available/ directory.
 
-&#x20;                  `vi sites-available/unity-cs.conf`
+&#x20;                  `sudo vi sites-available/unity-cs.conf`
 
 7. Add the following content to the sites-available/unity-cs.conf file.
 
