@@ -1,4 +1,12 @@
+---
+description: >-
+  The Unity venue bastion host is an EC2 instance that serves as a starting
+  point for deploying and managing things inside of a venue AWS account.
+---
+
 # Creating a Bastion Host
+
+### Procedure:
 
 * Creates an EC2 bastion host in project AWS account, which is able to deploy Management Console EC2.
 * Create EC2 instance with the following configuration:
@@ -27,4 +35,4 @@
   * Connect to instance
   * `sudo su - ubuntu`
   * `git clone https://github.com/unity-sds/unity-cs-infra.git`
-  * Back in the AWS console, create an image (AMI) from the EC2, to have as a backup.
+  * \[OPTIONAL STEP]  Back in the AWS console, create an image (AMI) from the EC2, to have as a backup.
