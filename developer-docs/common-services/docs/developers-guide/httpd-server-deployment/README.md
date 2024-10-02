@@ -26,7 +26,7 @@ An HTTPD server deployed on an EC2 instance is used as a proxy to route network 
          * INCOMING CONNECTIONS:
            * 443 -- from the security group of the Shared services ALB (should be called `ucs-httpd-alb-sec-group`)
          * OUTGOING CONNECTIONS:
-           * open custom HTTPS for 443 to anywhere, and HTTP 80 to `Anywhere-IPv4`
+           * open `All Traffic` to anywhere
        * Select the `shared-services-httpd-sg` security group.
      * Under "Advanced Details", select an IAM Instance Profile of `MCP-SSM-CloudWatch`
      * launch instance
