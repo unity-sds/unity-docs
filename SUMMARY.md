@@ -106,6 +106,8 @@
       * [Venue Certificate Creation](developer-docs/common-services/docs/admin-guide/venue-certificate-creation.md)
       * [User and Role Management](developer-docs/common-services/docs/admin-guide/user-and-role-management.md)
       * [Secure Token Service](developer-docs/common-services/docs/admin-guide/secure-token-service.md)
+    * [Maintenance](developer-docs/common-services/docs/maintenance/README.md)
+      * [Rebuild of Shared Services HTTPD Proxy](developer-docs/common-services/docs/maintenance/rebuild-of-shared-services-httpd-proxy.md)
   * [FAQ](developer-docs/common-services/faq.md)
   * [Contributing](developer-docs/common-services/contributing.md)
 * [Data](developer-docs/data/README.md)
