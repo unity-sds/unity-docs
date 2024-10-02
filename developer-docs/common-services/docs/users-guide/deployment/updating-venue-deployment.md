@@ -10,7 +10,7 @@ description: Procedure for updating a venue deployment
 4. Update the link in the Shared Services HTTPD, to point to newly deployed venue ALB
    1. Log into venue account --> EC2 --> Load Balancers
    2. Obtain ALB URL from venue
-      1. for example: `unity-dev-httpd-alb-443241596.us-west-2.elb.amazonaws.com`
+      1. for example: `unity-dev-httpd-alb-123456789.us-west-2.elb.amazonaws.com`
    3. Log into Shared Services account
    4. Go to EC2
    5. Log into (e.g. using SSM connect) `shared-services-httpd` instance.
