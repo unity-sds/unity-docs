@@ -27,4 +27,4 @@
   * Connect to instance
   * `sudo su - ubuntu`
   * `git clone https://github.com/unity-sds/unity-cs-infra.git`
-  * \[OPTIONAL STEP]  Back in the AWS console, create an image (AMI) from the EC2, to have as a backup.
+  * Back in the AWS console, create an image (AMI) from the EC2, to have as a backup.
