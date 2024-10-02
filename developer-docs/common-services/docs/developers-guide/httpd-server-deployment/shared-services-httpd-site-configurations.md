@@ -195,33 +195,9 @@ This template has,
 
 ## Unity Test HTTPD Site Configuration Example
 
-<pre class="language-apacheconf"><code class="lang-apacheconf"><strong>&#x3C;VirtualHost *:443>
-</strong>   
-    ##################################################################
-    # Define the following variables with environment specific values 
-    ##################################################################
-    
-    # The prefered name of the Unity HTTPD server
-    Define UNITY_HTTPD_SERVER_NAME unity-shared-services-httpd-server
-    
-    # The values for following Cognito related variables can be obtained from the Unity CS team
-    # OR checking the Shared Services Cognito pool in a specific envrionment (if you have access)
-    Define UNITY_OIDC_CLIENT_ID &#x3C;client_id_of_cognito_client>
-    Define UNITY_COGNITO_USER_POOL_ID &#x3C;cognito_user_pool_id>
-    Define UNITY_OIDC_CLIENT_SECRET &#x3C;client_secret_of_cognito_client>
-    Define UNITY_OIDC_OIDC_CRYPTO_PASSPHRASE &#x3C;any_random_passphrase>
-    
-    # The is a vanity URL that must point to a path protected by this module but must NOT point to any content
-    # The Cognito app client which has the above UNITY_OIDC_CLIENT_ID should have this URL as an "Allowed callback URL"
-    Define UNITY_OIDC_REDIRECT_URI https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/redirect-url
-    
-    
-    ##################################################################
-    # Apache HTTPD Configurations with above variable substitutions
-    ##################################################################
-    
-    ServerName ${UNITY_HTTPD_SERVER_NAME}
-    ServerAlias ${UNITY_SERVER_NAME}
+```apacheconf
+<VirtualHost *:443>
+    ServerName shared-services-httpd-unity-test
     ServerAdmin postmaster@unity.httpd
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
@@ -231,51 +207,51 @@ This template has,
     SSLProxyCheckPeerCN off
     SSLProxyCheckPeerExpire on
     SSLProxyCheckPeerName off
+
+    RewriteEngine On
     ProxyRequests Off
- 
+
     OIDCScope "openid email profile"
     OIDCProviderMetadataURL https://cognito-idp.us-west-2.amazonaws.com/${UNITY_COGNITO_USER_POOL_ID}/.well-known/openid-configuration
     OIDCClientID ${UNITY_OIDC_Client_ID}
     OIDCClientSecret ${UNITY_OIDC_CLIENT_SECRET}
- 
+
     # OIDCRedirectURI is a vanity URL that must point to a path protected by this module but must NOT point to any content
     OIDCRedirectURI ${UNITY_OIDC_REDIRECT_URI}
     OIDCCryptoPassphrase ${UNITY_OIDC_OIDC_CRYPTO_PASSPHRASE}
- 
- 
-    #############################################################################
-    # Location blocks and optional rewrite rules for venues and shared services
-    #############################################################################
- 
-    RewriteEngine On
- 
+
+
+    #
+    # unity/test
+    #
+    Define VENUE_ALB_HOST unity-test-httpd-alb-*********.us-west-2.elb.amazonaws.com
+    Define VENUE_ALB_PORT 8080
+    Define VENUE_ALB_PATH /unity/test/
     RewriteCond %{HTTP:Connection} Upgrade [NC]
     RewriteCond %{HTTP:Upgrade} websocket [NC]
-    RewriteCond %{REQUEST_URI} "/unity/test/"
-    RewriteRule /unity/test/(.*) ws://unity-test-httpd-alb-********.us-west-2.elb.amazonaws.com:8080/$1 [P,L] [END]
- 
-    &#x3C;Location "/unity/test/">
+    RewriteCond %{REQUEST_URI} "${VENUE_ALB_PATH}"
+    RewriteRule ${VENUE_ALB_PATH}(.*) ws://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}$1 [P,L] [END]
+    <Location "${VENUE_ALB_PATH}">
        ProxyPreserveHost on
        AuthType openid-connect
        Require valid-user
- 
-       # Added to point to httpd within the unity-venue-test account
-       ProxyPass  http://unity-test-httpd-alb-********.us-west-2.elb.amazonaws.com:8080/unity/test/
-       ProxyPassReverse  http://unity-test-httpd-alb-********.us-west-2.elb.amazonaws.com:8080/unity/test/
-    &#x3C;/Location>
- 
-    &#x3C;Location /data>
-       ProxyPreserveHost on
-       AuthType openid-connect
-       Require valid-user
-       
-       ProxyPass http://*.*.*.*:8005/data/
-       ProxyPassReverse http://*.*.*.*:8005/data/
-    &#x3C;/Location>
- 
-&#x3C;/VirtualHost>
 
-</code></pre>
+       # Added to point to httpd within the venue account
+       ProxyPass "http://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}"
+       ProxyPassReverse "http://${VENUE_ALB_HOST}:${VENUE_ALB_PORT}${VENUE_ALB_PATH}"
+       RequestHeader     set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+    </Location>
+
+
+    <Location /data>
+       ProxyPreserveHost on
+       AuthType openid-connect
+       Require valid-user
+    </Location>
+
+ </VirtualHost>
+
+```
 
 
 
