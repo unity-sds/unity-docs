@@ -6,6 +6,10 @@ description: >-
 
 # Creating a Bastion Host
 
+{% hint style="info" %}
+**PREREQUISITE**:  The MDPS [venue roles and policies](https://github.com/unity-sds/unity-cs-infra/blob/main/aws\_role\_create/create\_roles\_and\_policies.sh) must. be created before following the below procedure.
+{% endhint %}
+
 ### Procedure:
 
 * Creates an EC2 bastion host in project AWS account, which is able to deploy Management Console EC2.
