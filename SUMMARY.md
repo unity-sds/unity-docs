@@ -111,6 +111,7 @@
       * [Updating Venue Deployment](developer-docs/common-services/docs/maintenance/updating-venue-deployment.md)
       * [Recreating a Bastion Host](developer-docs/common-services/docs/maintenance/recreating-a-bastion-host.md)
       * [Updating the Unity-CS\_Service\_Role](developer-docs/common-services/docs/maintenance/updating-the-unity-cs\_service\_role.md)
+      * [Update Shared Services HTTPD Config](developer-docs/common-services/docs/maintenance/update-shared-services-httpd-config.md)
   * [FAQ](developer-docs/common-services/faq.md)
   * [Contributing](developer-docs/common-services/contributing.md)
 * [Data](developer-docs/data/README.md)
