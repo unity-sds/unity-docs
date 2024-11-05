@@ -5,9 +5,22 @@ description: Procedure for updating a venue deployment
 # Updating Venue Deployment
 
 1. Prerequsite:  Have a bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps), to create one, if one doesn't exist already.
-2. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
-3. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
-4. Update the link in the Shared Services HTTPD, to point to newly deployed venue ALB
+2. Undeploy SPS
+3.  Disconnect the U-DS marketplace-deployed module, for example:
+
+    ```sh
+    $ terraform state rm module.Unity-DS-Application-tdGjK
+    Removed module.Unity-DS-Application-tdGjK.aws_s3_bucket.market_bucket
+    Successfully removed 1 resource instance(s).
+    ```
+4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
+5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
+6.  Re-add U-DS module to terraform state:
+
+    ```sh
+    terraform import <bucket resource> <bucket name>
+    ```
+7. Update the link in the Shared Services HTTPD, to point to newly deployed venue ALB
    1. Log into venue account --> EC2 --> Load Balancers
    2. Obtain ALB URL from venue
       1. for example: `unity-dev-httpd-alb-123456789.us-west-2.elb.amazonaws.com`
