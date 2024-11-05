@@ -28,3 +28,6 @@ description: Procedure for updating a venue deployment
        \
        For example:\
        [https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui](https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui)\
+       \
+       NOTE:  SS\_PREFIX is `dev` for the dev shared services (i.e. `unity-dev`), `test` for test shared services (i.e. `unity-test`), and empty string for production.  So for production, the final URL would start with:\
+       https://www.mpds.mcp...
