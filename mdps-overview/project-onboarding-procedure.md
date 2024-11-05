@@ -84,7 +84,7 @@ description: >-
       * NOTE: the S3 bucket holding the terraform state files will not be deleted via the `destroy.sh` script.  It would be available for re-use next time around, if you deploy using the same \<PROJECT> and \<VENUE>. \
         &#x20;
 12. <mark style="color:purple;">**MDPS Team**</mark>** configures Shared Services HTTPD server to route to Venue "entry" ALB.**
-    * Perform steps 4 & 5 [here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/updating-venue-deployment).\
+    * Perform step 7 [here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/updating-venue-deployment).\
       &#x20;
 13. <mark style="color:purple;">**MDPS Team**</mark>** runs Core Setup actions in Management Console**\
     &#x20;&#x20;
