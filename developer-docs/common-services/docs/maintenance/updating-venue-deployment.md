@@ -20,6 +20,11 @@ description: Procedure for updating a venue deployment
    9. TODO: Link in future script that creates/modifies HTTPD shared services configuration.
    10. Edit the file to conform to the [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/developers-guide/httpd-server-deployment/shared-services-httpd-site-configurations). Typically, all you would have to do is update the value circled below, in the relevant section (for the venue you are re-deploying):
 
-       <figure><img src="../../../../../.gitbook/assets/Screenshot 2024-10-01 at 1.37.16 PM (3).png" alt=""><figcaption></figcaption></figure>
+       <figure><img src="../../../../.gitbook/assets/Screenshot 2024-10-01 at 1.37.16 PM (3).png" alt=""><figcaption></figcaption></figure>
    11. Restart HTTPD:\
-       `sudo systemctl restart apache2`\
+       `sudo systemctl restart apache2`
+   12. Now you should be able to access the Management Console at a URL that looks like:\
+       https://www.\<SS\_PREFIX>.mdps.mcp.nasa.gov:4443${VENUE\_ALB\_PATH}/management/ui\
+       \
+       For example:\
+       [https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui](https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui)\
