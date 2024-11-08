@@ -27,14 +27,14 @@ Follow the steps below:
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfJZl-SmQFGQjeFCN7uFpbSDaM1zmiowWBymf6q9BDoiGkQ_1ufE8og4NDOJstv0aKLbSRD0pofPC1c55ktTZHpFyMLbLFWyoHlDAm1rLT9koxG-tmxx4qut52mzxJDLhovZwHGn82KxeTZFPf_SisfYMPA8vLNDJ5VfHoF?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption><p>DAG execution page (Trigger DAG)</p></figcaption></figure>
 
-5. Paste the URL to the “unity-example-application” `workflow.cwl` file into “CWL\_Workflow” field:&#x20;
+5. Paste the URL to the “unity-example-application” `workflow.cwl` file into `CWL workflow` field:&#x20;
 
 * NOTE: Review Step 2 under [Optional Steps: Modify the Example Application Package](clone-the-example-application-code.md#optional-steps-modify-the-example-application-package) to find out how to retrieve the URL.
-* Here’s the URL for this exercise: `http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Funity-example-application/versions/5/PLAIN-CWL/descriptor/%2Fworkflow.cwl`
+* Here’s the `CWL workflow` for this exercise: `http://awslbdockstorestack-lb-1429770210.us-west-2.elb.amazonaws.com:9998/api/ga4gh/trs/v2/tools/%23workflow%2Fdockstore.org%2Fmike-gangl%2Funity-example-application/versions/5/PLAIN-CWL/descriptor/%2Fworkflow.cwl`
 
-6. Paste either the URL of the “input file” or the JSON string content directly into the “CWL\_Workflow” field:
+6. Paste either the URL of the “input file” or the JSON string content directly into the `CWL workflow parameters` field:
 
-* Here’s the URL of the “input file” for this exercise: `https://raw.githubusercontent.com/unity-sds/unity-example-application/main/test/ogc_app/unity-example-app.test.template.json`
+* Here’s the URL of the `CWL workflow parameters` for this exercise: `https://raw.githubusercontent.com/unity-sds/unity-example-application/main/test/ogc_app/unity-example-app.test.template.json`
 * See the figure below for example:
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf26QrOSaVGfkGBV_z0naa5jE8DtWZJPmc1pUkqvDb1orOgdgRFQLcEvant8BUtJFQRXMh0CaupsSyBE1OsifdwUTAETIHLpa9O0mH0KiqqiJbFA1qa73ykCmrZShCgnyxWxRfraPWKAP36CsA-Obmz6wV3PP-n6kWIt-3eWQ?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption></figcaption></figure>
