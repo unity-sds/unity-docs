@@ -1,14 +1,23 @@
 # Table of contents
 
-* [Docs](README.md)
+* [Introduction](README.md)
 
 ## MDPS Overview
 
-* [Getting Started](mdps-overview/getting-started.md)
 * [Key Unity Concepts](mdps-overview/key-unity-concepts.md)
-* [Project Onboarding Procedure](mdps-overview/project-onboarding-procedure.md)
 * [Unity Account and Login](mdps-overview/unity-account-and-login.md)
+* [Project Onboarding Procedure](mdps-overview/project-onboarding-procedure.md)
 * [Tutorials](mdps-overview/tutorials/README.md)
+  * [Learn to Run an Application Package](mdps-overview/tutorials/learn-to-run-an-application-package/README.md)
+    * [Getting a Unity Token](mdps-overview/tutorials/learn-to-run-an-application-package/getting-a-unity-token.md)
+    * [Log in to Jupyter Hub](mdps-overview/tutorials/learn-to-run-an-application-package/log-in-to-jupyter-hub.md)
+    * [Clone the Example Application Code](mdps-overview/tutorials/learn-to-run-an-application-package/clone-the-example-application-code.md)
+    * [Submit the App Package to the Application Package Generator](mdps-overview/tutorials/learn-to-run-an-application-package/submit-the-app-package-to-the-application-package-generator.md)
+    * [Monitor the App Package Generation Process](mdps-overview/tutorials/learn-to-run-an-application-package/monitor-the-app-package-generation-process.md)
+    * [Generate a template “input file” for the Application Package (Optional)](mdps-overview/tutorials/learn-to-run-an-application-package/generate-a-template-input-file-for-the-application-package-optional.md)
+    * [Execute the App Package using Airflow](mdps-overview/tutorials/learn-to-run-an-application-package/execute-the-app-package-using-airflow.md)
+    * [View Output Products in STAC Browser](mdps-overview/tutorials/learn-to-run-an-application-package/view-output-products-in-stac-browser.md)
+    * [FAQs for the "Learn to Run an App Package" Tutorial](mdps-overview/tutorials/learn-to-run-an-application-package/faqs-for-the-learn-to-run-an-app-package-tutorial.md)
   * [Algorithms and Algorithm Development](mdps-overview/tutorials/algorithms-and-algorithm-development/README.md)
     * [The Development Environment](mdps-overview/tutorials/algorithms-and-algorithm-development/the-development-environment.md)
     * [Understanding data access in the Unity System](mdps-overview/tutorials/algorithms-and-algorithm-development/users-guide.md)

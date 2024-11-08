@@ -2,7 +2,7 @@
 description: Unity Science Data System (SDS) Documentation
 ---
 
-# Docs
+# Introduction
 
 ## About
 
@@ -10,13 +10,21 @@ description: Unity Science Data System (SDS) Documentation
 **What is Unity?** It's a platform for science algorithms, analytics, data, and processing engines to work in tandem for fulfilling science use cases
 {% endhint %}
 
-A next-generation, service-based science data system (SDS) allowing adopters to re-use existing infrastructure, lower risk, and adopt state of the art science processing algroithms in a scientist-friendly environment. Unity is being developed at NASA's Jet Propulsion Laboratory and seeks to support science data processing efforts centered on the compute, algorithm development, data management, analytics, and other key aspects of a typical SDS. If you're looking to host a data processing and management system for large-scale science-oriented use case, Unity may be right for you.
+A next-generation, service-based science data system (SDS) allowing adopters to re-use existing infrastructure, lower risk, and adopt state-of-the-art science-processing algorithms in a scientist-friendly environment. Unity is being developed at NASA's Jet Propulsion Laboratory and seeks to support science data processing efforts centered on the compute, algorithm development, data management, analytics, and other key aspects of a typical SDS. If you're looking to host a data processing and management system for large-scale science-oriented use case, Unity may be right for you.
 
-At its core, Unity is a software platform for running SDSes in the cloud. It is an open source project and leverages Software-as-a-Service (SaaS) as well as Platform-as-a-Service (PaaS) concepts for ensuring customers benefit from a robust set of standardized services for performing their science  processing needs.&#x20;
+At its core, Unity is a software platform for running SDSs in the cloud. It is an open source project and leverages Software-as-a-Service (SaaS) as well as Platform-as-a-Service (PaaS) concepts for ensuring customers benefit from a robust set of standardized services for performing their science  processing needs.&#x20;
+
+More detail is on the [Key Unity Concepts](mdps-overview/key-unity-concepts.md) page.
 
 ## Getting Started
 
-Unity is both a hosted platform for running a full SDS as well as an open source project that can be independently launched and operated - depending on your use case. We recommend the best way to get started with Unity is through our hosted services (Unity Cloud). Our Community Edition instructions detail how to get started with the non-hosted platform edition.
+Unity is both a hosted platform for running a full SDS as well as an open-source project that can be independently launched and operated - depending on your use case. We recommend the best way to get started with Unity is through our hosted services (Unity Cloud). Our Community Edition instructions detail how to get started with the non-hosted platform edition.
+
+The first step is to set up your [Unity Account and Login](mdps-overview/unity-account-and-login.md).
+
+## Learning How to Use Unity
+
+The first tutorial that you should run through is [Learn to Run an Application Package](mdps-overview/tutorials/learn-to-run-an-application-package/). There are several [Jupyter notebooks that can be cloned](https://github.com/unity-sds/mdps-tutorial) into your Jupyter environment and used to demonstrate and learn the unity-sds-client Python API.
 
 ## Services
 

@@ -1,5 +1,5 @@
 ---
-description: From data to applications to jobs to analysis
+description: From data to applications to jobs to analysis.
 ---
 
 # Key Unity Concepts
@@ -12,22 +12,19 @@ The following key concepts will be explored in this guide:
 * Application Catalog
 * Processing System (to handle job requests)
 
-{% hint style="info" %}
-This page is a work-in-progress and will include additional material and links to tutorials, such as a tutorial for 'Publishing your first algorithm'
-{% endhint %}
-
 ## System Overview
 
 <figure><img src="../.gitbook/assets/ESO Context - Platform Functional Areas (4).png" alt=""><figcaption><p>High level functional areas</p></figcaption></figure>
 
-Unity is a set of managed services that provide an end-to-end tool set for science analysis, algorithm development, and scaled processing. They key (external facing) services available are:
+Unity is a set of managed services that provide an end-to-end tool set for science analysis, algorithm development, and scaled processing. The key services available are:
 
+* **Common User-Interface and Navigation**: A default web-based UI is offered in order to help navigate to the various tools within a particular installation. This also includes a system-status health dashboard.
 * **Algorithm Development**: the Algorithm Development Service (ADS), which includes a JupyterHub environment, code source-control and the Application Catalog (implemented using Dockstore).
-* **Science Processing Services**: For deploying applications and job-management activities you will interact with the WPS-T API provided by the Science Processing Service (SPS) subsystems.&#x20;
-* **Data Services**: For data input and output, you interact with the Data Access and Processing API (DAPA) from the Data Services (DS) subsystem.
+* **Science-Data Processing**: For deploying applications and job-management activities you will interact with the OGC Processing API provided by the Science Processing Service (SPS) subsystems and the ADES (Application Deployment and Execution Service) user interface.
+* **Data Services**: For data input and output, you interact with the Data Access and Processing API (DAPA) from the Data Services (DS) subsystem. A web-based data-browsing UI is also available to facilitate discovery and management of data.
 * **Infrastructure**: Underpinning all other services is a set of deployment, metrics, monitoring and  authentication & authorization tooling and services.
 
-Jupyter (ADS) and Airflow (SPS) are the primary graphical interfaces to the system.&#x20;
+Jupyter (ADS), Airflow (SPS), and STAC Browser (DS) are the primary graphical interfaces to the system.&#x20;
 
 {% hint style="info" %}
 As of the "prototype 1" release of the system, the interface between Dockstore and the rest of the system is currently limited. It will eventually be possible to directly deploy applications from Dockstore into the scaled compute environment (SPS subsystem). The user interface to do so will evolve with system capabilities.
@@ -47,7 +44,7 @@ Below are the key technologies supported by the MDPS system. These are the techn
 
 **STAC** ([SpatioTemporal Asset Catalogs](https://stacspec.org/en))**:** a common way to define geospatial records which can include metadata and one or more files (referred to as assets). STAC is used to define inputs and outputs of a process. These can be remote to the MDPS system, within the MDPS system, or even local to the process itself.
 
-**WPS/WPS-T**: Web Processing Service and Web Processing Service-Transactional are OGC standards for the deployment, execution, and monitoring of a process. We use WPS to standardize how an application package is deployed, executed, and results are returned.
+**OGC Processing**: OGC Processing API is an OGC standard for the deployment, execution, and monitoring of a process. We use OGC Processing to standardize how an Application Package is deployed, executed, and how results are returned.
 
 <figure><img src="../.gitbook/assets/ESO Context - Platform Functional Areas and Standards (2).png" alt=""><figcaption><p>Functional Areas with Key Technologies</p></figcaption></figure>
 
