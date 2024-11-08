@@ -31,7 +31,7 @@ Here is a handy reference to Github commands, in case you are not familiar with 
 
 8. From the Terminal: Clone the git repository using the https URL you copied from the Github interface (Step 5 above) as shown in the figure below:
 
-* Ex: `git clone [paste https url]`
+* Ex: `git clone https://github.com/unity-sds/unity-example-application.git`
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe4uGzzX5d__lK8x3VikHtW3ISgwB7ndZ_-Q4neHq3Zl8E_ok1Wlf7fi43WoIm-YyJ5AVooKdXmt0un6cFYLOJ99DjUnfK2FkfxWSfPS7sNtOJK2qYgeFN4-_RJB8St-qcX2NZSP7lWQqGg4DNtejNvz2-SEL6CGNtYhPQu5A?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption></figcaption></figure>
 
