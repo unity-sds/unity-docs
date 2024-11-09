@@ -19,19 +19,9 @@ Follow the steps below:
 
 5. A dialog will pop up asking for Authentication.  Paste in your Unity Token.
 
-* NOTE: **Retrieve your Unity Token** by executing the following from a Jupyter notebook—or a Python script—in your environment, then copy the token that is printed out (make sure not to grab extra spaces around it) and paste it into the input box in STAC Browser:
+* NOTE: Retrieve your Unity Token by executing the [Getting a Unity Token](getting-a-unity-token.md) steps from a Jupyter notebook—or a Python script—in your environment, then copy the token that is printed out (make sure not to grab extra spaces around it) and paste it into the input box in STAC Browser:
 
-`import requests`
 
-`from unity_sds_client.unity import Unity`
-
-`from unity_sds_client.unity import UnityEnvironments`
-
-`s = Unity(UnityEnvironments.PROD)`
-
-`token = s._session.get_auth().get_token()`
-
-`print("Here's your token: \n" + token)`
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeF5-7eLPAhMVePlwIO3zMBauoh5nklV3rZGfiBnFVo7brOhB762cULJhllqn3bSIAKEWlXE-dbH64Ceax927wcyAUnvbMz7TBhn3HW0QwNrfvcwDtMrdzFnXmlZgp9BJn7pKBizHSvvhh7UcmcmcszQYUNajNhHjLmuYZ_3Q?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption><p>Paste your Unity Token into the input box shown in this screenshot</p></figcaption></figure>
 

@@ -25,7 +25,7 @@ Please follow the instructions specified in the following sections in order:
 ### 1. Set Up Your Access
 
 1. Set up a Unity account as per the [Unity Account and Login](../../unity-account-and-login.md) page.
-2. For Section 3 (Generate the Example Application Package) and Section 7 (View Output Products in STAC Browser) you will need to retrieve an authorization token. Use the [Getting a Unity Token](getting-a-unity-token.md) instructions to do so.
+2. For the View Output Products in STAC Browser section, you will need to retrieve an authorization token. Use the [Getting a Unity Token](getting-a-unity-token.md) instructions to do so. A token is also generated in the Submit the App Package to the Application Package Generator section, but it's immediately used in the same notebook and does not need to be copy-pasted as in the STAC Browser section.
 
 ### Useful Links
 
