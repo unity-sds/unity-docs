@@ -256,6 +256,6 @@ watch -n 5 "curl -s "${OGC_API}/jobs/${JOB_ID}" | jq"
 curl -s -X DELETE "${OGC_API}/processes/cwl_dag?force=true"
 ```
 
-The following Jupyter Notebook contains an example on how to use the Unity OGC Python client to request and monitor an OGS process:
+The following Jupyter Notebook contains an example on how to use the Unity OGC Python client to request and monitor an OGC process:
 
 [https://github.com/unity-sds/unity-monorepo/blob/main/libs/unity-py/notebooks/ogc\_notebook.ipynb](https://github.com/unity-sds/unity-monorepo/blob/main/libs/unity-py/notebooks/ogc\_notebook.ipynb)
