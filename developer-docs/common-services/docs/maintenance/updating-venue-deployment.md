@@ -20,27 +20,20 @@ description: Procedure for updating a venue deployment
     ```sh
     terraform import <bucket resource> <bucket name>
     ```
-7. Update the link in the Shared Services HTTPD, to point to newly deployed venue ALB
-   1. Log into venue account --> EC2 --> Load Balancers
-   2. Obtain ALB URL from venue
-      1. for example: `unity-dev-httpd-alb-123456789.us-west-2.elb.amazonaws.com`
-   3. Log into Shared Services account
-   4. Go to EC2
-   5. Log into (e.g. using SSM connect) `shared-services-httpd` instance.
-   6. `sudo su - ubuntu`
-   7. `cd /etc/apache2/sites-enabled`
-   8. `sudo vi unity-cs.conf`
-   9. TODO: Link in future script that creates/modifies HTTPD shared services configuration.
-   10. Edit the file to conform to the [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/developers-guide/httpd-server-deployment/shared-services-httpd-site-configurations). Typically, all you would have to do is update the value circled below, in the relevant section (for the venue you are re-deploying):
+7.  Management Console Access
 
-       <figure><img src="../../../../.gitbook/assets/Screenshot 2024-10-01 at 1.37.16 PM (3).png" alt=""><figcaption></figcaption></figure>
-   11. Restart HTTPD:\
-       `sudo systemctl restart apache2`
-   12. Now you should be able to access the Management Console at a URL that looks like:\
-       https://www.\<SS\_PREFIX>.mdps.mcp.nasa.gov:4443${VENUE\_ALB\_PATH}/management/ui\
-       \
-       For example:\
-       [https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui](https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui)\
-       \
-       NOTE:  SS\_PREFIX is `dev` for the dev shared services (i.e. `unity-dev`), `test` for test shared services (i.e. `unity-test`), and empty string for production.  So for production, the final URL would start with:\
-       https://www.mpds.mcp...
+    1. The Management Console is accessible through the shared services HTTPD:
+       * Deployment automatically configures the Apache settings
+       * Links your venue's ALB to the shared services HTTPD
+       * Access URL format: `https://www.<SS_PREFIX>.mdps.mcp.nasa.gov:4443/${VENUE_PATH}/management/ui`
+    2. Environment URLs:
+       1. Development: `https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui`
+       2. Test: `https://www.test.mdps.mcp.nasa.gov:4443/unity/test/management/ui`
+       3. Production: `https://www.mdps.mcp.nasa.gov:4443/unity/prod/management/ui`
+    3. Notes:
+       1. `SS_PREFIX` varies by environment (dev, test, or empty for production)
+       2. Configuration is automatically removed during venue destruction
+       3.  No manual Apache configuration is required
+
+
+
