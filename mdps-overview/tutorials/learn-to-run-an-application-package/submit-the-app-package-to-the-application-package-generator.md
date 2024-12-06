@@ -39,7 +39,7 @@ CWL (Common Workflow Language) is a syntax to instruct a series of execution ste
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfo-LzCwUSzxl72xIgPPtuMkkWxfxhriAMzHQOS62tYDDhPCVoW84ZB6Rbq3aTa_y57k4kxfk_roNOKqb13e22FJCecNEf0dKPAGJbMebNC164Ndx9v4QPBsn41X4XKJshP6gJqZ9-XW_hyLftYWXeGcbYQCzRESvbruBZPvg?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption></figcaption></figure>
 
-* NOTE: A `response.status_code` of 200 and the `response.content` reiterating the `clone_url` will be shown if successful as shown in the figure below
+* NOTE: A `response.status_code` of 200 and the `response.content` reiterating the `clone_url` will be shown if the submissions was successful as shown in the figure below. This does not necessarily mean that the Application Package Generation will be successful, only that your request was successfully submitted to the service.
   * If you do not see this, please contact a Unity MDPS team member for help.
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdOjFp-Du8x4A9S3pZKj5q9_vCbShxBELk_nJmyfi19j_Gl4RKjb_c-y4DDqAk7gonO7YLniR-mC1WeLB78iQlzQtm1uMCoAK68hJO5qz00ZRhT557UIdpbjIQ_Hxpem_BHIQmLsTHa8ixxpTDN_Is4Ogq6B4TE7bEpPWQgJg?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption></figcaption></figure>
