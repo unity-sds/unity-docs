@@ -6,11 +6,11 @@ Many algorithm developers are used to writing code that uses input data files an
 
 There are two opinionated steps the Unity system has made that need to be understood for algorithm development.
 
-**The Unity system separates  the **_**discovery**_** of data from the execution of the algorithm**.&#x20;
+**The Unity system separates  the&#x20;**_**discovery**_**&#x20;of data from the execution of the algorithm**.&#x20;
 
 > This makes the code more portable- it's no longer dependent on a specific file system or directory structure. This means the algorithm can be shared with other users that might not have access to a specific file system (e.g. it's only accessible on a NASA VPN).  Similarly, it can be run 'anywhere' - that is in a different _environment_ (the cloud, a laptop, a super compute center) or in a different _venue_ (e.g. a development, test, production, or reprocessing environment).&#x20;
 
-&#x20;**The Unity system separates the **_**staging**_** of data from the execution of the algorithm.** &#x20;
+&#x20;**The Unity system separates the&#x20;**_**staging**_**&#x20;of data from the execution of the algorithm.** &#x20;
 
 > No assumptions about _how_ the data are made available to the algorithm (or how the algorithm gets to the data) are made. Many algorithms contain _implementations_ such as copy (`cp`), download (`wget, curl`), s3 (`aws s3 cp...`), or others. There are many assumptions made when these types of commands are used from file structures, availability of the servers, usernames/passwords and credentials.
 
@@ -40,7 +40,9 @@ You might be asking yourself, what the heck is `catalog.json` and why is it at `
 
 ### What the heck is catalog.json?
 
-Catalog.json is a [STAC](https://stacspec.org/) file that contains pointers to _**assets**_. For the most part, asset is synonymous with **datafile.** it can contain a single file or thousands, depending on what was staged. This file is how an algorithm knows what data were made available, and where those files are on the disk local to the algorithm.
+Catalog.json is a [STAC](https://stacspec.org/) file that contains _**items**_. Items include pointers to various assets (e.g. the data file, metadata files, thumbnails, provenance information, and more). For the most part, we are primarily interested in the item's data asset- that is the **datafile.** Catalog.json can contain a single item or thousands of items, depending on what was staged. This file is how an algorithm knows what data were made available, and where those files are on the disk local to the algorithm.
+
+The catalog.json can be either an [ItemCollection](https://github.com/radiantearth/stac-api-spec/blob/release/v1.0.0/fragments/itemcollection/README.md) (which is itself a geojson FeatureCollection)  or a [Catalog](https://github.com/radiantearth/stac-spec/blob/master/catalog-spec/catalog-spec.md) document. The main difference between these two types of documents is that an ItemCollection is a single document that includes catalog metadata and item information in-line, while a catalog refers to other files for item level metadata. ItemCollections are usually dynamically generated from a search API (like [CMR](https://cmr.earthdata.nasa.gov/search/site/docs/search/stac)). Catalog files are usually generated for files on disk.
 
 ### Why is catalog.json at that specific location?
 
