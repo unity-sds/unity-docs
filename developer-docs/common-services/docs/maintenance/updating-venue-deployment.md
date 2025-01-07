@@ -15,12 +15,13 @@ description: Procedure for updating a venue deployment
     ```
 4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
 5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
-6.  Re-add U-DS module to terraform state:
+6. SPS Team re-deploys SPS
+7.  Re-add U-DS module to terraform state:
 
     ```sh
     terraform import <bucket resource> <bucket name>
     ```
-7.  Management Console Access
+8.  Management Console Access
 
     1. The Management Console is accessible through the shared services HTTPD:
        * Deployment automatically configures the Apache settings
