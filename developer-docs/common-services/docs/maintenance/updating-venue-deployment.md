@@ -5,22 +5,21 @@ description: Procedure for updating a venue deployment
 # Updating Venue Deployment
 
 1. Prerequsite:  Have a bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps), to create one, if one doesn't exist already.
-2. Undeploy SPS
-3.  Disconnect the U-DS marketplace-deployed module, for example:
+2. Undeploy SPS (due to security group dependencies)
+3.  If the `Unity-DW-Application`module is present in the terraform state file, disconnect the U-DS marketplace-deployed module, for example:
 
     ```sh
     $ terraform state rm module.Unity-DS-Application-tdGjK
     Removed module.Unity-DS-Application-tdGjK.aws_s3_bucket.market_bucket
     Successfully removed 1 resource instance(s).
     ```
-4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
+4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (run destroy.sh under step 11)
 5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps).
 6. SPS Team re-deploys SPS
 7.  Re-add U-DS module to terraform state:
 
-    ```sh
-    terraform import <bucket resource> <bucket name>
-    ```
+    <pre class="language-sh"><code class="lang-sh"><strong>terraform import &#x3C;bucket resource> &#x3C;bucket name>
+    </strong></code></pre>
 8.  Management Console Access
 
     1. The Management Console is accessible through the shared services HTTPD:
