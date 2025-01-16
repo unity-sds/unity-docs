@@ -40,7 +40,15 @@ description: Procedure for updating a venue deployment
 
     **Production**: [`https://www.mdps.mcp.nasa.gov:4443/unity/ops/management/ui`](https://www.mdps.mcp.nasa.gov:4443/unity/ops/management/ui)\
 
-2. Verify you can access the UI Dashboard\
+2.  Verify you can access the UI Dashboard\
+    **Development**: \
+    [`https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/ui/health-dashboard`](https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/ui/health-dashboard)&#x20;
+
+    **Test**: \
+    [`https://www.test.mdps.mcp.nasa.gov:4443/unity/test/ui/health-dashboard`](https://www.test.mdps.mcp.nasa.gov:4443/unity/test/ui/health-dashboard)
+
+    **Production**: \
+    [`https://www.mdps.mcp.nasa.gov:4443/unity/ops/ui/health-dashboard`](https://www.mdps.mcp.nasa.gov:4443/unity/ops/ui/health-dashboard)\
 
 3. Verify the UI Dashboard is able to access the HealthCheck API, and is displaying statuses for each application.
 
