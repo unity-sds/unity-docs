@@ -14,7 +14,7 @@ description: Procedure for updating a venue deployment
     Successfully removed 1 resource instance(s).
     ```
 4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the `destroy.sh`script under step 11)
-5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the \`run.sh\` script)
+5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the `run.sh` script)
 6.  Manually update the shared services API Gateway Integration "Endpoint URL" to be the API Gateway URL from the venue deployment (see screeenshot below for example). <mark style="color:red;">NOTE: This may be needed until automation that does this, is fixed.</mark>\
 
 
