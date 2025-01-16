@@ -4,9 +4,9 @@ description: Procedure for updating a venue deployment
 
 # Updating Venue Deployment
 
-1. Prerequsite:  Have a bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps), to create one, if one doesn't exist already.
-2. Undeploy SPS (due to security group dependencies)
-3.  If the `Unity-DW-Application`module is present in the terraform state file, disconnect the U-DS marketplace-deployed module, for example:
+1. **Prerequisite**:  Have a EC2 bastion host on the venue account you wish to update.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps), to create one, if one doesn't exist alread&#x79;**.**
+2. **Un-deploy SPS** (due to security group dependencies)
+3.  Log into the Management Console, and check what is deployed currently (e.g. the "Application Management" page).  If the `Unity-DS-Application`module is deployed, and present in the terraform state file, disconnect the U-DS marketplace-deployed module, for example:
 
     ```sh
     $ terraform state rm module.Unity-DS-Application-tdGjK
@@ -22,22 +22,28 @@ description: Procedure for updating a venue deployment
 
     <pre class="language-sh"><code class="lang-sh"><strong>terraform import &#x3C;bucket resource> &#x3C;bucket name>
     </strong></code></pre>
-9.  Management Console Access
 
-    1. The Management Console is accessible through the shared services HTTPD:
 
-    `https://www.<SS_PREFIX>.mdps.mcp.nasa.gov:4443/${VENUE_PATH}/management/ui`
 
-    **Development**: [`https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui`](https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui)&#x20;
+### Steps to Verify a Successful Deployment:
 
-    **Test**: [`https://www.test.mdps.mcp.nasa.gov:4443/unity/test/management/ui`](https://www.test.mdps.mcp.nasa.gov:4443/unity/test/management/ui)
+1. Verify the  Management Console is accessible through the shared services HTTPD:
 
-    **Production**: [`https://www.mdps.mcp.nasa.gov:4443/unity/prod/management/ui`](https://www.mdps.mcp.nasa.gov:4443/unity/prod/management/ui)
+`https://www.<SS_PREFIX>.mdps.mcp.nasa.gov:4443/${VENUE_PATH}/management/ui`
 
-    1. Notes:
-       1. `SS_PREFIX` varies by environment (dev, test, or empty for production)
-       2. Configuration is automatically removed during venue destruction
-       3.  No manual Apache configuration is required
+**Development**: [`https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui`](https://www.dev.mdps.mcp.nasa.gov:4443/unity/dev/management/ui)&#x20;
+
+**Test**: [`https://www.test.mdps.mcp.nasa.gov:4443/unity/test/management/ui`](https://www.test.mdps.mcp.nasa.gov:4443/unity/test/management/ui)
+
+**Production**: [`https://www.mdps.mcp.nasa.gov:4443/unity/prod/management/ui`](https://www.mdps.mcp.nasa.gov:4443/unity/prod/management/ui)
+
+1. Notes:
+   1. `SS_PREFIX` varies by environment (dev, test, or empty for production)
+   2. Configuration is automatically removed during venue destruction
+   3. No manual Apache configuration is required\
+
+2. Verify you can access the UI Dashboard
+3.  Verify the UI Dashboard is able to access the HealthCheck API, and is displaying statuses for each application.
 
 
 
