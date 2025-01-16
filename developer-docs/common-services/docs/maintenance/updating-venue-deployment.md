@@ -5,7 +5,8 @@ description: Procedure for updating a venue deployment
 # Updating Venue Deployment
 
 1. **Prerequisite**:  Have a EC2 bastion host on the venue account you wish to update.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps), to create one, if one doesn't exist alread&#x79;**.**
-2. **Un-deploy SPS** (due to security group dependencies)
+2. **Un-deploy SPS** (due to security group dependencies).
+   1. Make sure SPS also un-deploys the EKS component.
 3.  Log into the Management Console, and check what is deployed currently (e.g. the "Application Management" page).  If the `Unity-DS-Application`module is deployed, and present in the terraform state file, disconnect the U-DS marketplace-deployed module, for example:
 
     ```sh
