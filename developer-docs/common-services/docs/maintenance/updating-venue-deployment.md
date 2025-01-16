@@ -27,7 +27,7 @@ description: Procedure for updating a venue deployment
 
 
 
-### Steps to Verify a Successful Deployment:
+## <mark style="color:orange;">Steps to Verify a Successful Deployment:</mark>
 
 1.  Verify the  Management Console is accessible through the shared services HTTPD:\
     `https://www.<SS_PREFIX>.mdps.mcp.nasa.gov:4443/${VENUE_PATH}/management/ui`
