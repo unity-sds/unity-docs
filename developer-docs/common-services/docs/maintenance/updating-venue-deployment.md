@@ -32,8 +32,10 @@ description: Procedure for updating a venue deployment
 
 
     <figure><img src="../../../../.gitbook/assets/Screenshot 2025-01-14 at 6.57.56 PM.png" alt=""><figcaption></figcaption></figure>
-8. SPS Team re-deploys SPS
-9.  Re-add U-DS module to terraform state:
+8. After saving the above Endpoint URL configuration, manually re-deploy the API no shared services.
+9. Go to the venue AWS console, and also redeploy the \`dev\` stage API Gateway.  Sometimes it takes a few minutes to really take effect, but at this point you should be able to see that the UI Dashboard is returning results from the Health Check API.
+10. SPS Team re-deploys SPS
+11. Re-add U-DS module to terraform state:
 
     <pre class="language-sh"><code class="lang-sh"><strong>terraform import &#x3C;bucket resource> &#x3C;bucket name>
     </strong></code></pre>
