@@ -9,11 +9,22 @@ description: Procedure for updating a venue deployment
    1. Make sure SPS also un-deploys the EKS component.
 3.  Log into the Management Console, and check what is deployed currently (e.g. the "Application Management" page).  If the `Unity-DS-Application`module is deployed, and present in the terraform state file, disconnect the U-DS marketplace-deployed module, for example:
 
-    ```sh
-    $ terraform state rm module.Unity-DS-Application-tdGjK
-    Removed module.Unity-DS-Application-tdGjK.aws_s3_bucket.market_bucket
-    Successfully removed 1 resource instance(s).
-    ```
+    1. mkdir temp
+    2. create a file called unity-dev.tf:
+
+    \`\`\`\
+    terraform { backend "s3" { bucket = "unity-unity-dev-bucket" key = "unity-dev-tfstate" region = "us-west-2" dynamodb\_table = "unity-dev-terraform-state" } }\
+    \`\`\`
+
+    1. run \`terraform init\`
+    2. OPTIONALLY  run \`terraform state list\`
+    3.  run \`terraform rm \<MODULE>\`, for example:
+
+        ```sh
+        $ terraform state rm module.Unity-DS-Application-tdGjK
+        Removed module.Unity-DS-Application-tdGjK.aws_s3_bucket.market_bucket
+        Successfully removed 1 resource instance(s).
+        ```
 4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the `destroy.sh`script under step 11)
 5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the `run.sh` script)
 6. Open the Management Console in a browser, go to the "Core Management" page, click "Save", then wait 1 minute.
