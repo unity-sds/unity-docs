@@ -9,7 +9,7 @@ description: Procedure for updating a venue deployment
    1. Make sure SPS also un-deploys the EKS component.
 3.  Log into the Management Console, and check what is deployed currently (e.g. the "Application Management" page).  If the `Unity-DS-Application`module is deployed, and present in the terraform state file, disconnect the U-DS marketplace-deployed module, for example:
 
-    1. mkdir temp
+    1. mkdir temp ; cd temp
     2. create a file called unity-dev.tf:
 
     \`\`\`\
@@ -18,7 +18,7 @@ description: Procedure for updating a venue deployment
 
     1. run \`terraform init\`
     2. OPTIONALLY  run \`terraform state list\`
-    3.  run \`terraform rm \<MODULE>\`, for example:
+    3.  run \`terraform state rm \<MODULE>\`, for example:
 
         ```sh
         $ terraform state rm module.Unity-DS-Application-tdGjK
