@@ -17,7 +17,9 @@ CWL (Common Workflow Language) is a syntax to instruct a series of execution ste
 
 ### Follow the Steps Below
 
-1. Navigate to the folder containing your cloned repository as shown in the figure below
+1. Navigate to the folder containing your cloned repository and add the `execute_app_pack_gen.ipynb`file from the link below:
+
+{% file src="../../../.gitbook/assets/execute_app_pack_gen.ipynb" %}
 
 <figure><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdFCvNMuQHYogOiIG0ginKN9KPZYzW-e8xSJRpaNRqNt91HEUtNfSYjM94TYnlLNcmAszh_gtopkuI0RTbTam0Jd8q6_Wbh3I48hdgiGZD47LBRmDDg9FB5_uyf7Q1yQnEITnlcDjrxLQUgh3BVoOyNL_cgXYb4mIh4O8fBxw?key=K2x_DkLuOSzQLgkvGhINiA" alt=""><figcaption></figcaption></figure>
 
