@@ -2,7 +2,7 @@
 
 The OGC ("Open Spatial Consortium") Processes API ("Abstract Program Interface") is an international specification for executing remote processing of Earth Science data. The client (for example a program, or a user using a web user interface) makes HTTP(s) requests to execute data processing on a remote server, passing all required information in JSON ("JavaScript Object Notation") format. The client-server interaction through the API is agnostic to the specific data processing engine implemented by the server.
 
-This page provides a high-level overview of the functionality exposed by the API. Other pages contain specific examples of interaction using CURL (...) and Python (...). More detailed documentation on the API can be found on the [OGC web page](https://ogcapi.ogc.org/processes/).
+This page provides a high-level overview of the functionality exposed by the API. Other pages contain specific examples of interaction using [CURL](https://unity-sds.gitbook.io/docs/developer-docs/science-processing/docs/developers-guide/tutorial-using-the-ogc-processes-api-with-curl)  and Python. More detailed documentation on the API can be found on the [OGC web page](https://ogcapi.ogc.org/processes/).
 
 The API includes the following functionality for managing _processes_ (aka available science algorithms):
 
