@@ -6,7 +6,7 @@ This page describes how a client (for example, a human or a program) can use the
 
 Let's first consider the case when the desired science algorithm has already been registered with the system. For example, each SPS deployment includes making available the CWL DAG ("Common Workflow Language" "Direct Acyclic Graph"), which can be used to execute any CWL workflow to invoke a generic science algorithm packaged as a Docker container. Later we will show how such a DAG can be registered in the first place.
 
-Step 1a (optional): List the available processes
+**Step 1a (optional): List the available processes**
 
 
 
@@ -108,7 +108,7 @@ curl -k -X GET "${OGC\_PROCESSES\_API}/processes" | jq
 
 You will notice that the server response includes a process with identifier "cwl\_dag", which we will want to trigger next.
 
-Step 2a: Execute a process (i.e. create a job)
+**Step 2a: Execute a process (i.e. create a job)**
 
 <details>
 
@@ -260,7 +260,7 @@ EOF
 
 Note that the response contains the job id ("7b1173ff-137e-41fa-bfb1-bd133049b4a3") and its status ("accepted").&#x20;
 
-Step 3a: Monitor the job
+**Step 3a: Monitor the job**
 
 You can use the job id returned in the previous step to monitor the job until it completes.
 
@@ -367,6 +367,138 @@ We will assume that the SPS deployment has been configured to monitor the GitHub
 <summary>Request</summary>
 
 curl -k -v -X POST -H "Expect:" -H "Content-Type: application/json; charset=utf-8" --data-binary @"./cwl\_dag.json" "${OGC\_PROCESSES\_API}/processes"
+
+where:
+
+cat cwl\_dag.json&#x20;
+
+{
+
+&#x20; "executionUnit": {
+
+&#x20;   "image": "ghcr.io/unity-sds/unity-sps/sps-docker-cwl:2.4.0",
+
+&#x20;   "type": "docker"
+
+&#x20; },
+
+&#x20; "processDescription": {
+
+&#x20;   "description": "This process executes any CWL workflow.",
+
+&#x20;   "id": "cwl\_dag",
+
+&#x20;   "inputs": {
+
+&#x20;     "cwl\_args": {
+
+&#x20;       "description": "The URL of the CWL workflow's YAML parameters file",
+
+&#x20;       "maxOccurs": 1,
+
+&#x20;       "minOccurs": 1,
+
+&#x20;       "schema": {
+
+&#x20;         "format": "uri",
+
+&#x20;         "type": "string"
+
+&#x20;       },
+
+&#x20;       "title": "CWL Workflow Parameters URL"
+
+&#x20;     },
+
+&#x20;     "cwl\_workflow": {
+
+&#x20;       "description": "The URL of the CWL workflow",
+
+&#x20;       "maxOccurs": 1,
+
+&#x20;       "minOccurs": 1,
+
+&#x20;       "schema": {
+
+&#x20;         "format": "uri",
+
+&#x20;         "type": "string"
+
+&#x20;       },
+
+&#x20;       "title": "CWL Workflow URL"
+
+&#x20;     },
+
+&#x20;     "request\_instance\_type": {
+
+&#x20;       "description": "The specific EC2 instance type requested for the job",
+
+&#x20;       "maxOccurs": 1,
+
+&#x20;       "minOccurs": 1,
+
+&#x20;       "schema": {
+
+&#x20;         "type": "string"
+
+&#x20;       },
+
+&#x20;       "title": "Requested EC2 Type"
+
+&#x20;     },
+
+&#x20;     "request\_storage": {
+
+&#x20;       "description": "The amount of storage requested for the job",
+
+&#x20;       "maxOccurs": 1,
+
+&#x20;       "minOccurs": 1,
+
+&#x20;       "schema": {
+
+&#x20;         "type": "string"
+
+&#x20;       },
+
+&#x20;       "title": "Requested Storage"
+
+&#x20;     }
+
+&#x20;   },
+
+&#x20;   "jobControlOptions": \[
+
+&#x20;     "async-execute"
+
+&#x20;   ],
+
+&#x20;   "outputs": {
+
+&#x20;     "result": {
+
+&#x20;       "description": "The result of the SBG Preprocess Workflow execution",
+
+&#x20;       "schema": {
+
+&#x20;         "$ref": "some-ref"
+
+&#x20;       },
+
+&#x20;       "title": "Process Result"
+
+&#x20;     }
+
+&#x20;   },
+
+&#x20;   "title": "Generic CWL Process",
+
+&#x20;   "version": "1.0.0"
+
+&#x20; }
+
+}
 
 </details>
 
