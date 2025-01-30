@@ -1,6 +1,6 @@
 # Tutorial: Using the OGC Processes API with CURL
 
-This page describes how a client (for example, a human or a program) can use the popular CURL tool to interact with the Unity SPS through the OGC Processes API to register a new science algorithm and request its execution. The SPS system is already deployed and the OGC Processes API is available at some URL of the form:&#x20;
+This page describes how a client (for example, a human or a program) can use the popular CURL tool to interact with the Unity SPS through the OGC Processes API to register a new science algorithm and request its execution. We will be assuming that the SPS system is already deployed and the OGC Processes API is available at some URL of the form:&#x20;
 
 * OGC\_PROCESSES\_API=https://unity-dev-httpd-alb-XXXXXXXXXX.us-west-2.elb.amazonaws.com:1234/unity/dev/ogc/
 
@@ -262,7 +262,7 @@ Note that the response contains the job id ("7b1173ff-137e-41fa-bfb1-bd133049b4a
 
 Step 3a: Monitor the job
 
-You can use the job id returned in the previous step to keep monitoring the job until it completes.
+You can use the job id returned in the previous step to monitor the job until it completes.
 
 <details>
 
@@ -308,7 +308,7 @@ curl "${OGC\_PROCESSES\_API}/jobs/${JOB\_ID}"
 
 </details>
 
-Or to execute the command every 5 seconds:
+Or to keep executing the command every few seconds:
 
 <details>
 
@@ -387,8 +387,6 @@ curl -k -v -X POST -H "Expect:" -H "Content-Type: application/json; charset=utf-
 Process cwl\_dag deployed successfully%       &#x20;
 
 </details>
-
-
 
 Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match the filename of the DAG in the GitHub repository, at the specified path and branch, without the ".py" extension.
 
