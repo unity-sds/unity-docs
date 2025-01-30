@@ -358,19 +358,37 @@ Let's now demonstrate how a client would make a request to register a new scienc
 
 Let's consider the following DAG: [https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl\_dag.py](https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl_dag.py)
 
-We will assume that the SPS deployment has been configured to monitory the GitHub repository [https://github.com/unity-sds/unity-sps](https://github.com/unity-sds/unity-sps) at the path "airflow/dags" in the brach "main".
+We will assume that the SPS deployment has been configured to monitor the GitHub repository [https://github.com/unity-sds/unity-sps](https://github.com/unity-sds/unity-sps) at the path "airflow/dags" in the brach "main".
 
 **Step 1b: Register a process**
-
-We will register the following CWL DAG:
 
 <details>
 
 <summary>Request</summary>
 
-xxx
+curl -k -v -X POST -H "Expect:" -H "Content-Type: application/json; charset=utf-8" --data-binary @"./cwl\_dag.json" "${OGC\_PROCESSES\_API}/processes"
 
 </details>
+
+<details>
+
+<summary>Response</summary>
+
+< HTTP/1.1 201 Created
+
+< Date: Thu, 30 Jan 2025 15:06:26 GMT
+
+< Content-Length: 37
+
+< Connection: keep-alive
+
+< Server: uvicorn
+
+Process cwl\_dag deployed successfully%       &#x20;
+
+</details>
+
+
 
 Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match the filename of the DAG in the GitHub repository, at the specified path and branch, without the ".py" extension.
 
@@ -400,7 +418,7 @@ Step 2b: Unregister a process
 
 <summary>Request</summary>
 
-
+curl -kv -X DELETE -H "Content-Type: application/json; charset=utf-8" "${OGC\_PROCESSES\_API}/processes/cwl\_dag"
 
 </details>
 
@@ -408,7 +426,13 @@ Step 2b: Unregister a process
 
 <summary>Response</summary>
 
+< HTTP/1.1 204 No Content
 
+< Date: Thu, 30 Jan 2025 15:05:34 GMT
+
+< Connection: keep-alive
+
+< Server: uvicorn
 
 </details>
 
