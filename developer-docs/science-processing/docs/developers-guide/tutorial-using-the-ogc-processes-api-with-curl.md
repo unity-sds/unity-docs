@@ -352,13 +352,49 @@ watch -n 5 "curl -s "${OGC\_PROCESSES\_API}/jobs/${JOB\_ID}" | jq"
 
 </details>
 
+***
+
 Let's now demonstrate how a client would make a request to register a new science algorithm, encoded as an Airflow DAG. The DAG (a Python program) needs to be checked in within the GitHub repository that was configured during the SPS deployment. In other words, the DAG author will check the latest version of the code into GitHub in the specified folder, and then they can make an HTTP request to the OGC API to register that process for execution.&#x20;
 
-Step 1b: Register a process
+Let's consider the following DAG: [https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl\_dag.py](https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl_dag.py)
+
+We will assume that the SPS deployment has been configured to monitory the GitHub repository [https://github.com/unity-sds/unity-sps](https://github.com/unity-sds/unity-sps) at the path "airflow/dags" in the brach "main".
+
+**Step 1b: Register a process**
 
 We will register the following CWL DAG:
 
-* [https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl\_dag.py](https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl_dag.py)
+<details>
+
+<summary>Request</summary>
+
+xxx
+
+</details>
+
+Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match the filename of the DAG in the GitHub repository, at the specified path and branch, without the ".py" extension.
+
+<details>
+
+<summary>Response</summary>
+
+< HTTP/1.1 201 Created
+
+< Date: Thu, 30 Jan 2025 11:55:45 GMT
+
+< Content-Length: 37
+
+< Connection: keep-alive
+
+< Server: uvicorn
+
+
+
+Process cwl\_dag deployed successfully%                &#x20;
+
+</details>
+
+Step 2b: Unregister a process
 
 <details>
 
@@ -368,229 +404,16 @@ We will register the following CWL DAG:
 
 </details>
 
-
-
-
-
-At this time, for this to work the following conditions must be satisfied:
-
-* The Airflow DAG is publicly available in the GitHub repository and at the path that the SPS installation was configured to look for. For example, we will demonstrate how to register the following Airflow DAG:
-  * [https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl\_dag.py](https://github.com/unity-sds/unity-sps/blob/develop/airflow/dags/cwl_dag.py)
-  *
-
-#### Step 2 - Deploy a Process Named `cwl_dag` with the OGC API
-
 <details>
 
-<summary>Request</summary>
-
-```sh
-curl -s -0 -X POST "${OGC_API}/processes" \
--H "Expect:" \
--H 'Content-Type: application/json; charset=utf-8' \
---data-binary @- << EOF
-{
-    "processDescription": {
-        "title": "Generic CWL Process",
-        "description": "This process executes any CWL workflow.",
-        "id": "cwl_dag",
-        "version": "1.0.0",
-        "jobControlOptions": [
-            "async-execute"
-        ],
-
-        "inputs": {
-            "cwl_workflow": {
-                "title": "CWL Workflow URL",
-                "description": "The URL of the CWL workflow",
-                "schema": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "minOccurs": 1,
-                "maxOccurs": 1
-            },
-            "cwl_args": {
-                "title": "CWL Workflow Parameters URL",
-                "description": "The URL of the CWL workflow's YAML parameters file",
-                "schema": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "minOccurs": 1,
-                "maxOccurs": 1
-            },
-            "request_memory": {
-                "title": "Requested Memory",
-                "description": "The amount of memory requested for the job",
-                "schema": {
-                    "type": "string"
-                },
-                "minOccurs": 1,
-                "maxOccurs": 1,
-                "default": "8Gi"
-            },
-            "request_cpu": {
-                "title": "Requested CPU",
-                "description": "The number of CPU cores requested for the job",
-                "schema": {
-                    "type": "string"
-                },
-                "minOccurs": 1,
-                "maxOccurs": 1
-            },
-            "request_storage": {
-                "title": "Requested Storage",
-                "description": "The amount of storage requested for the job",
-                "schema": {
-                    "type": "string"
-                },
-                "minOccurs": 1,
-                "maxOccurs": 1
-            }
-        },
-        "outputs": {
-            "result": {
-                "title": "Process Result",
-                "description": "The result of the SBG Preprocess Workflow execution",
-                "schema": {
-                    "$ref": "some-ref"
-                }
-            }
-        }
-    },
-    "executionUnit": {
-        "type": "docker",
-        "image": "ghcr.io/unity-sds/unity-sps/sps-docker-cwl:2.1.0"
-    }
-}
-EOF
-```
+<summary>Response</summary>
 
 
 
 </details>
 
-<details>
+Note that if the DAG author wants to test a new version of the DAG, they will need to perform the following steps:
 
-<summary>Expected Response</summary>
-
-```
-Process cwl_dag deployed successfully                                                                                                                                                                                        
-```
-
-
-
-</details>
-
-#### Step 3 - Trigger Execution of the `cwl_dag` Process through the OGC API
-
-<details>
-
-<summary>Request</summary>
-
-```sh
-curl -s -X POST "${OGC_API}/processes/cwl_dag/execution" \
--H "Content-Type: application/json" \
--H "Prefer: respond-async" \
---data-binary @- << EOF | jq '.'
-{
-  "inputs": {
-    "cwl_workflow": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.cwl",
-    "cwl_args": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.dev.yml",
-    "request_memory": "8Gi",
-    "request_cpu": "4",
-    "request_storage": "10Gi"
-  },
-  "outputs": {
-    "result": {
-      "transmissionMode": "reference"
-    }
-  }
-}
-EOF
-```
-
-</details>
-
-<details>
-
-<summary>Expected Response</summary>
-
-```
-[
-  [
-    "process_id",
-    "cwl_dag"
-  ],
-  [
-    "type",
-    "process"
-  ],
-  [
-    "job_id",
-    "7b23d796-96ae-4d6b-b1c1-15181752aa43"
-  ],
-  [
-    "status",
-    "accepted"
-  ],
-  [
-    "message",
-    null
-  ],
-  [
-    "exception",
-    null
-  ],
-  [
-    "created",
-    "2024-09-18T18:03:38.299715"
-  ],
-  [
-    "started",
-    null
-  ],
-  [
-    "finished",
-    null
-  ],
-  [
-    "updated",
-    "2024-09-18T18:03:38.299718"
-  ],
-  [
-    "progress",
-    null
-  ],
-  [
-    "links",
-    null
-  ]
-]
-```
-
-</details>
-
-#### Step 5a - Check Job Status through the OGC API
-
-* Check the status of the job by it's ID:
-
-```shell
-JOB_ID={Find in the `job_id` field in above response}
-watch -n 5 "curl -s "${OGC_API}/jobs/${JOB_ID}" | jq"
-```
-
-#### Step 5b - Check Job Status through the Airflow UI
-
-* Verify the execution of the process started a `cwl_dag` DAG run.
-
-#### Step 6 - After the Job Completes, Undeploy the Process
-
-```sh
-curl -s -X DELETE "${OGC_API}/processes/cwl_dag?force=true"
-```
-
-The following Jupyter Notebook contains an example on how to use the Unity OGC Python client to request and monitor an OGC process:
-
-[https://github.com/unity-sds/unity-monorepo/blob/main/libs/unity-py/notebooks/ogc\_notebook.ipynb](https://github.com/unity-sds/unity-monorepo/blob/main/libs/unity-py/notebooks/ogc_notebook.ipynb)
+* Check in the new version of the DAG in the GitHub repository
+* First use the OGC API to unregister the DAG
+* The use the OGC API to register the DAG again (which will trigger the new version to be deployed to the SPS system)
