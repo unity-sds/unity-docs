@@ -8,6 +8,6 @@
 [developers-guide.md](developers-guide.md)
 {% endcontent-ref %}
 
-{% content-ref url="admin-guide.md" %}
-[admin-guide.md](admin-guide.md)
+{% content-ref url="admin-guide/" %}
+[admin-guide](admin-guide/)
 {% endcontent-ref %}
