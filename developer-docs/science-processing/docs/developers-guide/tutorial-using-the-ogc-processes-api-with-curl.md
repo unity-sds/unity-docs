@@ -14,7 +14,9 @@ Let's first consider the case when the desired science algorithm has already bee
 
 <summary>Request</summary>
 
-curl -k -X GET "${OGC\_PROCESSES\_API}/processes" | jq
+```
+curl -k -X GET "${OGC_PROCESSES_API}/processes" | jq
+```
 
 </details>
 
@@ -22,87 +24,49 @@ curl -k -X GET "${OGC\_PROCESSES\_API}/processes" | jq
 
 <summary>Response</summary>
 
+```
 {
-
-&#x20; "processes": \[
-
-&#x20;   {
-
-&#x20;     "title": "Generic CWL Process",
-
-&#x20;     "description": "This process executes any CWL workflow.",
-
-&#x20;     "keywords": null,
-
-&#x20;     "metadata": null,
-
-&#x20;     "id": "cwl\_dag",
-
-&#x20;     "version": "1.0.0",
-
-&#x20;     "jobControlOptions": \[
-
-&#x20;       "async-execute"
-
-&#x20;     ],
-
-&#x20;     "links": null
-
-&#x20;   },
-
-&#x20;   {
-
-&#x20;     "title": "Karpenter Test Process",
-
-&#x20;     "description": "This process tests Karpenter node provisioning with different instance types.",
-
-&#x20;     "keywords": null,
-
-&#x20;     "metadata": null,
-
-&#x20;     "id": "karpenter\_test",
-
-&#x20;     "version": "1.0.0",
-
-&#x20;     "jobControlOptions": \[
-
-&#x20;       "async-execute"
-
-&#x20;     ],
-
-&#x20;     "links": null
-
-&#x20;   },
-
-&#x20;   {
-
-&#x20;     "title": "SBG Preprocess CWL Workflow",
-
-&#x20;     "description": "This process executes the SBG Preprocess Workflow using CWL.",
-
-&#x20;     "keywords": null,
-
-&#x20;     "metadata": null,
-
-&#x20;     "id": "sbg\_preprocess\_cwl\_dag",
-
-&#x20;     "version": "1.0.0",
-
-&#x20;     "jobControlOptions": \[
-
-&#x20;       "async-execute"
-
-&#x20;     ],
-
-&#x20;     "links": null
-
-&#x20;   }
-
-&#x20; ],
-
-&#x20; "links": \[]
-
+  "processes": [
+    {
+      "title": "Generic CWL Process",
+      "description": "This process executes any CWL workflow.",
+      "keywords": null,
+      "metadata": null,
+      "id": "cwl_dag",
+      "version": "1.0.0",
+      "jobControlOptions": [
+        "async-execute"
+      ],
+      "links": null
+    },
+    {
+      "title": "Karpenter Test Process",
+      "description": "This process tests Karpenter node provisioning with different instance types.",
+      "keywords": null,
+      "metadata": null,
+      "id": "karpenter_test",
+      "version": "1.0.0",
+      "jobControlOptions": [
+        "async-execute"
+      ],
+      "links": null
+    },
+    {
+      "title": "SBG Preprocess CWL Workflow",
+      "description": "This process executes the SBG Preprocess Workflow using CWL.",
+      "keywords": null,
+      "metadata": null,
+      "id": "sbg_preprocess_cwl_dag",
+      "version": "1.0.0",
+      "jobControlOptions": [
+        "async-execute"
+      ],
+      "links": null
+    }
+  ],
+  "links": []
 }
+```
 
 </details>
 
@@ -114,41 +78,26 @@ You will notice that the server response includes a process with identifier "cwl
 
 <summary>Request</summary>
 
-&#x20;curl -s -X POST "${OGC\_PROCESSES\_API}/processes/cwl\_dag/execution" \\
-
--H "Content-Type: application/json" \\
-
--H "Prefer: respond-async" \\
-
-\--data-binary @- << EOF | jq '.'
-
-{
-
-&#x20; "inputs": {
-
-&#x20;   "cwl\_workflow": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.cwl",
-
-&#x20;   "cwl\_args": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.dev.yml",
-
-&#x20;   "request\_instance\_type": "r7i.xlarge",
-
-&#x20;   "request\_storage": "10Gi"&#x20;
-
-&#x20; },
-
-&#x20; "outputs": {
-
-&#x20;   "result": {
-
-&#x20;     "transmissionMode": "reference"
-
-&#x20;   }
-
-&#x20; }
-
-}
-
-EOF
+```
+curl -s -X POST "${OGC_PROCESSES_API}/processes/cwl_dag/execution" \
+    -H "Content-Type: application/json" \
+    -H "Prefer: respond-async" \
+    --data-binary @- << EOF | jq '.'
+    {
+        "inputs": {
+            "cwl_workflow": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.cwl",
+            "cwl_args": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.dev.yml",
+            "request_instance_type": "r7i.xlarge",
+            "request_storage": "10Gi" 
+          },
+          "outputs": {
+            "result": {
+              "transmissionMode": "reference"
+            }
+          }
+    }
+    EOF
+```
 
 </details>
 
@@ -156,105 +105,58 @@ EOF
 
 <summary>Response</summary>
 
-\[
-
-&#x20; \[
-
-&#x20;   "process\_id",
-
-&#x20;   "cwl\_dag"
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "type",
-
-&#x20;   "process"
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "job\_id",
-
-&#x20;   "7b1173ff-137e-41fa-bfb1-bd133049b4a3"
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "status",
-
-&#x20;   "accepted"
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "message",
-
-&#x20;   null
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "exception",
-
-&#x20;   null
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "created",
-
-&#x20;   "2025-01-29T20:33:05.521710"
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "started",
-
-&#x20;   null
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "finished",
-
-&#x20;   null
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "updated",
-
-&#x20;   "2025-01-29T20:33:05.521715"
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "progress",
-
-&#x20;   null
-
-&#x20; ],
-
-&#x20; \[
-
-&#x20;   "links",
-
-&#x20;   null
-
-&#x20; ]
-
+```
+[
+  [
+    "process_id",
+    "cwl_dag"
+  ],
+  [
+    "type",
+    "process"
+  ],
+  [
+    "job_id",
+    "7b1173ff-137e-41fa-bfb1-bd133049b4a3"
+  ],
+  [
+    "status",
+    "accepted"
+  ],
+  [
+    "message",
+    null
+  ],
+  [
+    "exception",
+    null
+  ],
+  [
+    "created",
+    "2025-01-29T20:33:05.521710"
+  ],
+  [
+    "started",
+    null
+  ],
+  [
+    "finished",
+    null
+  ],
+  [
+    "updated",
+    "2025-01-29T20:33:05.521715"
+  ],
+  [
+    "progress",
+    null
+  ],
+  [
+    "links",
+    null
+  ]
 ]
+```
 
 </details>
 
@@ -268,9 +170,10 @@ You can use the job id returned in the previous step to monitor the job until it
 
 <summary>Request</summary>
 
-JOB\_ID=7b1173ff-137e-41fa-bfb1-bd133049b4a3
-
-curl "${OGC\_PROCESSES\_API}/jobs/${JOB\_ID}"
+```
+JOB_ID=7b1173ff-137e-41fa-bfb1-bd133049b4a3
+curl "${OGC_PROCESSES_API}/jobs/${JOB_ID}"
+```
 
 </details>
 
@@ -278,33 +181,22 @@ curl "${OGC\_PROCESSES\_API}/jobs/${JOB\_ID}"
 
 <summary>Response</summary>
 
+```
 {
-
-&#x20; "processID": "cwl\_dag",
-
-&#x20; "type": "process",
-
-&#x20; "jobID": "7b1173ff-137e-41fa-bfb1-bd133049b4a3",
-
-&#x20; "status": "running",
-
-&#x20; "message": null,
-
-&#x20; "exception": null,
-
-&#x20; "created": "2025-01-29T20:33:05.521710Z",
-
-&#x20; "started": null,
-
-&#x20; "finished": null,
-
-&#x20; "updated": "2025-01-29T20:41:47.598612Z",
-
-&#x20; "progress": null,
-
-&#x20; "links": null
-
+  "processID": "cwl_dag",
+  "type": "process",
+  "jobID": "7b1173ff-137e-41fa-bfb1-bd133049b4a3",
+  "status": "running",
+  "message": null,
+  "exception": null,
+  "created": "2025-01-29T20:33:05.521710Z",
+  "started": null,
+  "finished": null,
+  "updated": "2025-01-29T20:41:47.598612Z",
+  "progress": null,
+  "links": null
 }
+```
 
 </details>
 
@@ -314,7 +206,9 @@ Or to keep executing the command every few seconds:
 
 <summary>Request</summary>
 
-watch -n 5 "curl -s "${OGC\_PROCESSES\_API}/jobs/${JOB\_ID}" | jq"
+```
+watch -n 5 "curl -s "${OGC_PROCESSES_API}/jobs/${JOB_ID}" | jq"
+```
 
 </details>
 
@@ -322,33 +216,22 @@ watch -n 5 "curl -s "${OGC\_PROCESSES\_API}/jobs/${JOB\_ID}" | jq"
 
 <summary>Response</summary>
 
+```
 {
-
-&#x20; "processID": "cwl\_dag",
-
-&#x20; "type": "process",
-
-&#x20; "jobID": "7b1173ff-137e-41fa-bfb1-bd133049b4a3",
-
-&#x20; "status": "successful",
-
-&#x20; "message": null,
-
-&#x20; "exception": null,
-
-&#x20; "created": "2025-01-29T20:33:05.521710Z",
-
-&#x20; "started": null,
-
-&#x20; "finished": "2025-01-29T20:48:11.943940Z",
-
-&#x20; "updated": "2025-01-29T20:58:31.094170Z",
-
-&#x20; "progress": null,
-
-&#x20; "links": null
-
+  "processID": "cwl_dag",
+  "type": "process",
+  "jobID": "7b1173ff-137e-41fa-bfb1-bd133049b4a3",
+  "status": "successful",
+  "message": null,
+  "exception": null,
+  "created": "2025-01-29T20:33:05.521710Z",
+  "started": null,
+  "finished": "2025-01-29T20:48:11.943940Z",
+  "updated": "2025-01-29T20:58:31.094170Z",
+  "progress": null,
+  "links": null
 }
+```
 
 </details>
 
@@ -366,139 +249,80 @@ We will assume that the SPS deployment has been configured to monitor the GitHub
 
 <summary>Request</summary>
 
-curl -k -v -X POST -H "Expect:" -H "Content-Type: application/json; charset=utf-8" --data-binary @"./cwl\_dag.json" "${OGC\_PROCESSES\_API}/processes"
+```
+curl -k -v -X POST -H "Expect:" -H "Content-Type: application/json; charset=utf-8" --data-binary @"./cwl_dag.json" "${OGC_PROCESSES_API}/processes"
+```
 
 where:
 
-cat cwl\_dag.json&#x20;
+`cat cwl_dag.json`&#x20;
 
+```
 {
-
-&#x20; "executionUnit": {
-
-&#x20;   "image": "ghcr.io/unity-sds/unity-sps/sps-docker-cwl:2.4.0",
-
-&#x20;   "type": "docker"
-
-&#x20; },
-
-&#x20; "processDescription": {
-
-&#x20;   "description": "This process executes any CWL workflow.",
-
-&#x20;   "id": "cwl\_dag",
-
-&#x20;   "inputs": {
-
-&#x20;     "cwl\_args": {
-
-&#x20;       "description": "The URL of the CWL workflow's YAML parameters file",
-
-&#x20;       "maxOccurs": 1,
-
-&#x20;       "minOccurs": 1,
-
-&#x20;       "schema": {
-
-&#x20;         "format": "uri",
-
-&#x20;         "type": "string"
-
-&#x20;       },
-
-&#x20;       "title": "CWL Workflow Parameters URL"
-
-&#x20;     },
-
-&#x20;     "cwl\_workflow": {
-
-&#x20;       "description": "The URL of the CWL workflow",
-
-&#x20;       "maxOccurs": 1,
-
-&#x20;       "minOccurs": 1,
-
-&#x20;       "schema": {
-
-&#x20;         "format": "uri",
-
-&#x20;         "type": "string"
-
-&#x20;       },
-
-&#x20;       "title": "CWL Workflow URL"
-
-&#x20;     },
-
-&#x20;     "request\_instance\_type": {
-
-&#x20;       "description": "The specific EC2 instance type requested for the job",
-
-&#x20;       "maxOccurs": 1,
-
-&#x20;       "minOccurs": 1,
-
-&#x20;       "schema": {
-
-&#x20;         "type": "string"
-
-&#x20;       },
-
-&#x20;       "title": "Requested EC2 Type"
-
-&#x20;     },
-
-&#x20;     "request\_storage": {
-
-&#x20;       "description": "The amount of storage requested for the job",
-
-&#x20;       "maxOccurs": 1,
-
-&#x20;       "minOccurs": 1,
-
-&#x20;       "schema": {
-
-&#x20;         "type": "string"
-
-&#x20;       },
-
-&#x20;       "title": "Requested Storage"
-
-&#x20;     }
-
-&#x20;   },
-
-&#x20;   "jobControlOptions": \[
-
-&#x20;     "async-execute"
-
-&#x20;   ],
-
-&#x20;   "outputs": {
-
-&#x20;     "result": {
-
-&#x20;       "description": "The result of the SBG Preprocess Workflow execution",
-
-&#x20;       "schema": {
-
-&#x20;         "$ref": "some-ref"
-
-&#x20;       },
-
-&#x20;       "title": "Process Result"
-
-&#x20;     }
-
-&#x20;   },
-
-&#x20;   "title": "Generic CWL Process",
-
-&#x20;   "version": "1.0.0"
-
-&#x20; }
-
+  "executionUnit": {
+    "image": "ghcr.io/unity-sds/unity-sps/sps-docker-cwl:2.4.0",
+    "type": "docker"
+  },
+  "processDescription": {
+    "description": "This process executes any CWL workflow.",
+    "id": "cwl_dag",
+    "inputs": {
+      "cwl_args": {
+        "description": "The URL of the CWL workflow's YAML parameters file",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "format": "uri",
+          "type": "string"
+        },
+        "title": "CWL Workflow Parameters URL"
+      },
+      "cwl_workflow": {
+        "description": "The URL of the CWL workflow",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "format": "uri",
+          "type": "string"
+        },
+        "title": "CWL Workflow URL"
+      },
+      "request_instance_type": {
+        "description": "The specific EC2 instance type requested for the job",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "type": "string"
+        },
+        "title": "Requested EC2 Type"
+      },
+      "request_storage": {
+        "description": "The amount of storage requested for the job",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "type": "string"
+        },
+        "title": "Requested Storage"
+      }
+    },
+    "jobControlOptions": [
+      "async-execute"
+    ],
+    "outputs": {
+      "result": {
+        "description": "The result of the SBG Preprocess Workflow execution",
+        "schema": {
+          "$ref": "some-ref"
+        },
+        "title": "Process Result"
+      }
+    },
+    "title": "Generic CWL Process",
+    "version": "1.0.0"
+  }
 }
+```
 
 </details>
 
@@ -506,17 +330,14 @@ cat cwl\_dag.json&#x20;
 
 <summary>Response</summary>
 
+```
 < HTTP/1.1 201 Created
-
 < Date: Thu, 30 Jan 2025 15:06:26 GMT
-
 < Content-Length: 37
-
 < Connection: keep-alive
-
 < Server: uvicorn
-
-Process cwl\_dag deployed successfully%       &#x20;
+Process cwl_dag deployed successfully%    
+```
 
 </details>
 
@@ -526,19 +347,15 @@ Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match 
 
 <summary>Response</summary>
 
+```
 < HTTP/1.1 201 Created
-
 < Date: Thu, 30 Jan 2025 11:55:45 GMT
-
 < Content-Length: 37
-
 < Connection: keep-alive
-
 < Server: uvicorn
 
-
-
-Process cwl\_dag deployed successfully%                &#x20;
+Process cwl_dag deployed successfully%      
+```
 
 </details>
 
@@ -548,7 +365,9 @@ Step 2b: Unregister a process
 
 <summary>Request</summary>
 
-curl -kv -X DELETE -H "Content-Type: application/json; charset=utf-8" "${OGC\_PROCESSES\_API}/processes/cwl\_dag"
+```
+curl -kv -X DELETE -H "Content-Type: application/json; charset=utf-8" "${OGC_PROCESSES_API}/processes/cwl_dag"
+```
 
 </details>
 
@@ -556,13 +375,12 @@ curl -kv -X DELETE -H "Content-Type: application/json; charset=utf-8" "${OGC\_PR
 
 <summary>Response</summary>
 
+```
 < HTTP/1.1 204 No Content
-
 < Date: Thu, 30 Jan 2025 15:05:34 GMT
-
 < Connection: keep-alive
-
 < Server: uvicorn
+```
 
 </details>
 
