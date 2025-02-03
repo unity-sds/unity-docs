@@ -4,15 +4,13 @@ Unity SPS developers are responsible for authoring, testing and executing workfl
 
 Developers may write DAGs from scratch following the well documented Airflow guide \[1], or may take advantage of the SPS built-in CWL DAG that allows them to execute any workflow written according to the CWL specification \[2]. In this latter case, the developer's effort shifts from learning how to write a DAG, to learning how to write a CWL workflow.
 
-In either case, SPS allows developers to submit, monitor and inspect a workflow execution either via the Airflow User Interface \[3], via the Airflow REST API \[4], or OGC API \[5] \[6] \[5].
+In either case, the Unity SPS allows developers to submit, monitor and inspect a workflow execution either via the Airflow User Interface \[3], via the Airflow REST API \[4], or via the OGC API \[5] \[6] \[5].
 
 ## Working with the CWL DAG
 
 Because the CWL DAG is already registered in the SPS system as part of its deployment, the developer's responsibility is to author a CWL document (and associated YAML or JSON parameters file) that will execute their specific data processing workflow. Typically (but not necessarily) the CWL workflow will invoke a Docker container that packages the specific science algorithm \[8].
 
-The CWL DAG can be executed via the Airflow UI, the Airflow API or the OGC Processes API (using the "jobs" endpoints).
-
-The CWL and YAML file URLs will be specified as input parameters when submitting a job for execution.
+The CWL DAG can be executed via the Airflow UI, the Airflow API or the OGC Processes API (using the "/jobs" endpoint). The CWL and YAML/JSON file URLs will be specified as input parameters when submitting a job for execution.
 
 ## Best Practice #1
 
@@ -29,11 +27,11 @@ It is recommended that both the CWL workflow and the invoked Docker container be
 
 This practice will allow the developer to unequivocally update and execute new versions of the CWL workflow and/or Docker container.
 
-## Authoring a Python DAG
+## Authoring a generic Python DAG
 
-When authoring a generic DAG (using Python), the developer will need to check the source code into the specific GitHub repository that is configured for that SPS installation (this repository will be chosen by the project before deploying the SPS). The developer will need to "register" the DAG using the OGS Processes API (specifically, the "/processes" endpoint) before it can be executed using the Airflow UI or supported REST APIs.
+When authoring a generic DAG (using Python), the developer will need to check the source code into the specific GitHub repository that is configured for that SPS installation (this repository will be chosen by the project before deploying the SPS). The developer will need to "register" the Python DAG using the OGC Processes API (specifically, the "/processes" endpoint) before it can be executed using the Airflow UI or supported REST APIs.
 
-## Best Practice #1
+## Best Practice
 
 It is recommended that the developer explicitly encode the version of the DAG in the file name. For example:
 
