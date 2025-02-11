@@ -131,6 +131,7 @@
       * [Data Services API Specification](developer-docs/data/docs/users-guide/data-services-api-specification.md)
       * [Stage In](developer-docs/data/docs/users-guide/stage-in.md)
       * [Stage Out](developer-docs/data/docs/users-guide/stage-out.md)
+      * [Programmatic Stage In/Out Tutorial](developer-docs/data/docs/users-guide/programmatic-stage-in-out-tutorial.md)
     * [Developers Guide](developer-docs/data/docs/developers-guide.md)
     * [Admin Guide](developer-docs/data/docs/admin-guide/README.md)
       * [Admin API Specification](developer-docs/data/docs/admin-guide/admin-api-specification.md)
