@@ -18,6 +18,7 @@
     * [Execute the App Package using Airflow](mdps-overview/tutorials/learn-to-run-an-application-package/execute-the-app-package-using-airflow.md)
     * [View Output Products in STAC Browser](mdps-overview/tutorials/learn-to-run-an-application-package/view-output-products-in-stac-browser.md)
     * [FAQs for the "Learn to Run an App Package" Tutorial](mdps-overview/tutorials/learn-to-run-an-application-package/faqs-for-the-learn-to-run-an-app-package-tutorial.md)
+    * [Re-executing failed jobs in airflow](mdps-overview/tutorials/learn-to-run-an-application-package/re-executing-failed-jobs-in-airflow.md)
   * [Algorithms and Algorithm Development](mdps-overview/tutorials/algorithms-and-algorithm-development/README.md)
     * [The Development Environment](mdps-overview/tutorials/algorithms-and-algorithm-development/the-development-environment.md)
     * [Understanding data access in the Unity System](mdps-overview/tutorials/algorithms-and-algorithm-development/users-guide.md)
