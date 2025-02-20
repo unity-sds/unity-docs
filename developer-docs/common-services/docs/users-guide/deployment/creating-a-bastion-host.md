@@ -7,7 +7,7 @@ description: >-
 # Creating a Bastion Host
 
 {% hint style="info" %}
-**PREREQUISITE**:  The MDPS [venue roles and policies](https://github.com/unity-sds/unity-cs-infra/blob/main/aws\_role\_create/create\_roles\_and\_policies.sh) must be created before following the below procedure.
+**PREREQUISITE**:  The MDPS [venue roles and policies](https://github.com/unity-sds/unity-cs-infra/blob/main/aws_role_create/create_roles_and_policies.sh) must be created before following the below procedure.
 {% endhint %}
 
 ### Procedure:
@@ -38,5 +38,5 @@ description: >-
     * NOTE: if this is the first time deploying to this AWS account, you may need to click on the error link and subscript/accept the Ubuntu Pro FIPS 20.04 LTS agreement, then click re-try on the launch instance.
   * Connect to instance
   * `sudo su - ubuntu`
-  * `git clone https://github.com/unity-sds/unity-cs-infra.git`
+  * `git clone https://github.com/unity-sds/unity-monorepo.git`
   * \[OPTIONAL STEP]  Back in the AWS console, create an image (AMI) from the EC2, to have as a backup.
