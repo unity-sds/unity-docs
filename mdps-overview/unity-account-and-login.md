@@ -13,7 +13,7 @@ description: >-
 ### Logging in for the first time
 
 1. When a new account is created you will receive an email with a temporary password. It will come from `no-reply@verificationemail.com`. If you did not receive this email please let the support team know.
-2. Go to the Home Dashboard page (e.g., [https://www.mdps.mcp.nasa.gov:4443/emit/dev/dashboard](https://www.mdps.mcp.nasa.gov:4443/emit/dev/dashboard)).  You may see a warning which you can bypass using your browser's normal process.\
+2. Go to the Home Dashboard page (e.g., [https://www.mdps.mcp.nasa.gov:4443/unity/ops/jupyter/](https://www.mdps.mcp.nasa.gov:4443/unity/ops/jupyter/)).  You may see a warning which you can bypass using your browser's normal process.\
    ![](../.gitbook/assets/login-1-security-risk.png)
 3. You should see the login prompt. Use the username and password that were emailed to you. \
    ![](../.gitbook/assets/login-4-user-pass.png)
@@ -23,7 +23,7 @@ description: >-
 
 If you forget your password or need to reset it for some reason:
 
-1. Go to the login page for the environment that you want to work in, e.g. [https://unitysds-test.auth.us-west-2.amazoncognito.com/login?client\_id=59hp9flt6hm7k2nvacqhudqpl2\&response\_type=code\&scope=email+openid+profile\&redirect\_uri=https://jupyter-test-alb-1633047587.us-west-2.elb.amazonaws.com:8000/hub/oauth\_callback](https://unitysds-test.auth.us-west-2.amazoncognito.com/login?client\_id=59hp9flt6hm7k2nvacqhudqpl2\&response\_type=code\&scope=email+openid+profile\&redirect\_uri=https://jupyter-test-alb-1633047587.us-west-2.elb.amazonaws.com:8000/hub/oauth\_callback)
+1. Go to the login page for the environment that you want to work in, e.g. [https://www.mdps.mcp.nasa.gov:4443/unity/ops/jupyter/](https://www.mdps.mcp.nasa.gov:4443/unity/ops/jupyter/)
 2. Select the "Forgot your password?" option, then
 3. Enter your user name and press the button "Reset my password".&#x20;
 4. That will send a code to your email, which can be used to change the password.

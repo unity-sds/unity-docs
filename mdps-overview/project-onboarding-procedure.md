@@ -81,14 +81,12 @@ description: >-
     * **OPTIONAL STEPS IF YOU NEED TO DESTROY the Venue Infrastructure:**
       * Run the following on the bastion host:
       * `./destroy.sh --project-name`` `<mark style="color:blue;">`<PROJECT>`</mark>` ``--venue-name`` `<mark style="color:green;">`<VENUE>`</mark>
-      * NOTE: the S3 bucket holding the terraform state files will not be deleted via the `destroy.sh` script.  It would be available for re-use next time around, if you deploy using the same \<PROJECT> and \<VENUE>. \
-        &#x20;
-12. <mark style="color:purple;">**MDPS Team**</mark>**&#x20;runs Core Setup actions in Management Console**\
-    &#x20;&#x20;
-13. <mark style="color:purple;">**MDPS Team**</mark> reaches out to <mark style="color:orange;">**Project**</mark>, to notify them that their account is ready for use.
+      * NOTE: the S3 bucket holding the terraform state files will not be deleted via the `destroy.sh` script.  It would be available for re-use next time around, if you deploy using the same \<PROJECT> and \<VENUE>.  \
+        &#x20; &#x20;
+12. <mark style="color:purple;">**MDPS Team**</mark> reaches out to <mark style="color:orange;">**Project**</mark>, to notify them that their account is ready for use.
     * URL(s) and instructions to log into services is provided to Project Team.\
       &#x20;  &#x20;
-14. <mark style="color:orange;">**Project Users**</mark> [log into MDPS](https://unity-sds.gitbook.io/docs/mdps-overview/unity-account-and-login) using the URLs provided, and do work.  For example:
+13. <mark style="color:orange;">**Project Users**</mark> [log into MDPS](https://unity-sds.gitbook.io/docs/mdps-overview/unity-account-and-login) using the URLs provided, and do work.  For example:
     * <mark style="color:orange;">**Project Algorithm Developer**</mark> logs into JuptyerHub and creates/tests algorithms
     * <mark style="color:orange;">**Project Administrator**</mark> logs into Management Console, and installs/updates MDPS services
     * <mark style="color:orange;">**Project Workflow Engineer**</mark> logs into SPS/Airflow and edits DAG code
