@@ -27,15 +27,14 @@ description: Procedure for updating a venue deployment
         ```
 4. Destroy Management Console via bastion host.  See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the `destroy.sh`script under step 11)
 5. Deploy new Management Console via bastion host.   See [instructions here](https://unity-sds.gitbook.io/docs/developer-docs/common-services/docs/users-guide/deployment/deployment-concepts-and-infrastructure/detailed-breakdown-of-project-onboarding-steps). (execute the `run.sh` script)
-6. Open the Management Console in a browser, go to the "Core Management" page, click "Save", then wait 1 minute.
-7.  Manually update the shared services API Gateway Integration "Endpoint URL" to be the API Gateway URL from the venue deployment (see screeenshot below for example). <mark style="color:red;">NOTE: This may be needed until automation that does this, is fixed.</mark>\
+6.  Manually update the shared services API Gateway Integration "Endpoint URL" to be the API Gateway URL from the venue deployment (see screeenshot below for example). <mark style="color:red;">NOTE: This may be needed until automation that does this, is fixed.</mark>\
 
 
     <figure><img src="../../../../.gitbook/assets/Screenshot 2025-01-14 at 6.57.56 PM.png" alt=""><figcaption></figcaption></figure>
-8. After saving the above Endpoint URL configuration, manually re-deploy the API no shared services.
-9. Go to the venue AWS console, and also redeploy the \`dev\` stage API Gateway.  Sometimes it takes a few minutes to really take effect, but at this point you should be able to see that the UI Dashboard is returning results from the Health Check API.
-10. SPS Team re-deploys SPS
-11. Re-add U-DS module to terraform state:
+7. After saving the above Endpoint URL configuration, manually re-deploy the API no shared services.
+8. Go to the venue AWS console, and also redeploy the \`dev\` stage API Gateway.  Sometimes it takes a few minutes to really take effect, but at this point you should be able to see that the UI Dashboard is returning results from the Health Check API.
+9. SPS Team re-deploys SPS
+10. Re-add U-DS module to terraform state:
 
     <pre class="language-sh"><code class="lang-sh"><strong>terraform import &#x3C;bucket resource> &#x3C;bucket name>
     </strong></code></pre>
