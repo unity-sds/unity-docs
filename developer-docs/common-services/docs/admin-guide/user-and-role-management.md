@@ -28,9 +28,13 @@ Before adding a user, the following information should be collected from the use
 9. Under the “Temporary Password” select the option to “Generate a password”.
 10. Click the ‘Create user” button to create the user.
 
+<figure><img src="../../../../.gitbook/assets/Create-User.png" alt=""><figcaption></figcaption></figure>
+
+
+
 Above steps will send an email to the user with the instructions to change the password. The user must change the password within 10 days. If not, it is required to delete the user and repeat all above steps.
 
-### Steps to remove an excising user:
+### Steps to remove an existing user:
 
 1. Login to the required MCP environment using Kion .
 2. Search for Cognito or directly access the Cognito service using https://us-west-2.console.aws.amazon.com/cognito/v2/idp/user-pools?region=us-west-2.
@@ -41,6 +45,10 @@ Above steps will send an email to the user with the instructions to change the p
 7. Click the ‘Delete user” button to delete the user.
 8. Click “Disable user access” in the next dialog box.
 9. Press “Delete” button to complete the action.
+
+<figure><img src="../../../../.gitbook/assets/Delete-User.png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Add and remove roles from the MDPS System
 
@@ -55,7 +63,9 @@ Above steps will send an email to the user with the instructions to change the p
 7. The Precedence and IAM role are optional, but can be set based on the use cases
 8. Click the ‘Create group” button to create the Cognito user group.
 
-### Steps to remove an excising user group:
+<figure><img src="../../../../.gitbook/assets/Create-Group.png" alt=""><figcaption></figcaption></figure>
+
+### Steps to remove an existing user group:
 
 1. Login to the required MCP environment using Kion .
 2. Search for Cognito or directly access the Cognito service using https://us-west-2.console.aws.amazon.com/cognito/v2/idp/user-pools?region=us-west-2.
@@ -64,6 +74,10 @@ Above steps will send an email to the user with the instructions to change the p
 5. Search for the group by entering the group name to be deleted.
 6. When the group is listed, select the radio button near the Cognito user group.
 7. Click the ‘Delete” button to delete the user.
+
+<figure><img src="../../../../.gitbook/assets/Delete-Group.png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Add/remove users from roles in the MDPS system
 
@@ -78,9 +92,19 @@ It is necessary to associate Cognito users with Cognito user groups in order to 
 5. Search for the user by entering the username or email.
 6. When the username is listed, click on the username.
 7. In the next screen, under the Group memberships, click the button “Add user to a group”.
+
+<figure><img src="../../../../.gitbook/assets/Group-Membership.png" alt=""><figcaption></figcaption></figure>
+
 8. Search for the group name to be added and select the user group by clicking on the radio button near the group name.
 9. Press button “Add’ to add the user to the group.
+
+<figure><img src="../../../../.gitbook/assets/Add-User-to-Group.png" alt=""><figcaption></figcaption></figure>
+
+
+
 10. Repeat steps 8 and 9 , if it is required to add more groups.
+
+
 
 ### Steps to remove a user from a user group.
 
@@ -94,3 +118,6 @@ It is necessary to associate Cognito users with Cognito user groups in order to 
 8. When the user group is listed, select the user group by clicking on the radio button near the group name.
 9. Press button “Remove user from group to remove the user from the group.
 10. Confirm the decision to remove the user group in next dialog box.
+
+<figure><img src="../../../../.gitbook/assets/Remove-User-from-Group.png" alt=""><figcaption></figcaption></figure>
+
