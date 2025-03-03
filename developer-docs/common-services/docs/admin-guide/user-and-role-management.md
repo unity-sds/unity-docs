@@ -8,7 +8,7 @@ description: >-
 
 ## Add and remove users from the MDPS system
 
-The user should be added to the shared services Cognito user pool in the related MCP environment (Unity Dev, Unity Test or Unity Prod).
+A user (Cognito user) should be added to the shared services Cognito user pool in the related MCP environment (Unity Dev, Unity Test or Unity Prod).
 
 Before adding a user, the following information should be collected from the user.
 
