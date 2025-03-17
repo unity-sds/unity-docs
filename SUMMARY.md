@@ -93,7 +93,7 @@
         * [Unity Security Guidelines](developer-docs/common-services/docs/users-guide/security/unity-security-guidelines.md)
         * [Unity Authorization Model](developer-docs/common-services/docs/users-guide/security/unity-authorization-model.md)
         * [Amazon Cognito Authentication with JupyterHub](developer-docs/common-services/docs/users-guide/security/amazon-cognito-authentication-with-jupyterhub.md)
-        * [Editing Getting Cognito JWT Tokens in Command Line](developer-docs/common-services/docs/users-guide/security/editing-getting-cognito-jwt-tokens-in-command-line.md)
+        * [Getting Cognito JWT Tokens in Command Line](developer-docs/common-services/docs/users-guide/security/getting-cognito-jwt-tokens-in-command-line.md)
         * [Terraform Cloud Variables](developer-docs/common-services/docs/users-guide/security/terraform-cloud-variables.md)
         * [Token Management](developer-docs/common-services/docs/users-guide/security/token-management.md)
         * [Cognito User Standards](developer-docs/common-services/docs/users-guide/security/cognito-user-standards.md)
