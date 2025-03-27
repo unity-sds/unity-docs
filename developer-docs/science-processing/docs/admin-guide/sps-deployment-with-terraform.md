@@ -42,7 +42,7 @@ In this step, you will deploy a Kubernetes cluster onto the AWS infrastructure.
 * Configure the Terraform S3 backend using the proper workspace:
   * export BUCKET=\<bucket> (example: "unity-unity-dev-bucket")
     * This is the S3 bucket where the SPS Terraform state will be stored - it is different for each venue. The full path to the tfstate on S3 will depend also on the name chosen for the Terraform woskpace.
-  * terraform init --reconfigure -backend-config="bucket=$BUCKET"
+  * terraform init -reconfigure -backend-config="bucket=$BUCKET"
     * If Terraform asks for which workspace to select, choose "default" for now. The proper workspace will be defined in the following step.
   * Define the workspace to use:
     * export WORKSPACE=${PROJECT}-${VENUE}-sps-${COMPONENT}
@@ -85,7 +85,7 @@ In this step, you will use a Helm Chart to deploy the Karpenter controller onto 
   * Note: it is assumed all other environment variables defined above are still defined in the current environment
   * Warning: it is recommended to renew the AWS credentials before starting deployment
 * Initialize Terraform for the new cluster, deployment and workspace:
-  * terraform init -reconfigure -backend-config="bucket=$BUCKET
+  * terraform init -reconfigure -backend-config="bucket=$BUCKET"
     * If Terraform asks for which workspace to select, choose "default" for now. The proper workspace will be defined in the following step.
   * Define the workspace to use:
     * export WORKSPACE=${PROJECT}-${VENUE}-sps-${COMPONENT}
@@ -123,7 +123,7 @@ In this step, you will deploy the Airflow orchestration engine using a Helm Char
 
 
 
-    * terraform init -reconfigure -backend-config="bucket=$BUCKET
+    * terraform init -reconfigure -backend-config="bucket=$BUCKET"
       * If Terraform asks for which workspace to select, choose "default" for now. The proper workspace will be defined in the following step.
     * export WORKSPACE=${PROJECT}-${VENUE}-sps
       * Note: there is no "${COMPONENT} in the workspace name, unlike the previous 2 cases
