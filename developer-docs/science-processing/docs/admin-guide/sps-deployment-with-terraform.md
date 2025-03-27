@@ -137,7 +137,7 @@ In this step, you will deploy the Airflow orchestration engine using a Helm Char
   * export TFVARS\_FILENAME=${PROJECT}-${VENUE}-${SERVICE\_AREA}-${COMPONENT}.tfvars
   * terraform-docs tfvars hcl . --output-file tfvars/${TFVARS\_FILENAME}
   * edit tfvars/${TFVARS\_FILENAME}
-    * Just like before, remove the first/last comment lines and dd the values for "project" and "venue"
+    * Just like before, remove the first/last comment lines and add the values for "project" and "venue"
     * Also enter the values for "airflow\_webserver\_password" (choose one value) and "kubeconfig\_filepath" (enter the value of $KUBECONFIG)
   * Warning: it is recommended to renew the AWS credentials
   * terraform apply --var-file=tfvars/${TFVARS\_FILENAME}
