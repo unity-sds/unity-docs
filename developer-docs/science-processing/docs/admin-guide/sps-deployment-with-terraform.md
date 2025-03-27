@@ -72,7 +72,7 @@ In this step, you will deploy a Kubernetes cluster onto the AWS infrastructure.
   * Verify you can interact with the EKS cluster:
     * kubectl get all -A
 * Later, after the EKS cluster is no more useful, it can be destroyed wit the following command:
-  * terraform destroy--var-file=tfvars/${TFVARS\_FILENAME}"
+  * terraform destroy --var-file=tfvars/${TFVARS\_FILENAME}"
     * If everything looks good, type "yes" to start the destruction process
 
 ### Step 2: Deploy Karpenter onto the EKS Cluster
@@ -107,7 +107,7 @@ In this step, you will use a Helm Chart to deploy the Karpenter controller onto 
     * If everything looks good, type "yes" to start the deployment process, which will take 20-30 minutes
     * The Karpenter deployment should only take a few minutes
   * Later, to destroy the Karpenter infrastructure:
-    * terraform destroy--var-file=tfvars/${TFVARS\_FILENAME}"
+    * terraform destroy --var-file=tfvars/${TFVARS\_FILENAME}"
       * If everything looks good type "yes"
 
 ### Step 3: Deploy Airflow onto the EKS Cluster
