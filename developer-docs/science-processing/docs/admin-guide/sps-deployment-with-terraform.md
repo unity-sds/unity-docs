@@ -15,6 +15,7 @@ The SPS deployment process consists of 3 steps:
   * The [AWS CLI](https://aws.amazon.com/cli/) tool
   * [Terraform](https://www.terraform.io/) version 1.8.2
   * The Kubernetes client [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+  * [Docker](https://www.docker.com/)
 
 ### Step 0: Setup the environment
 
@@ -137,9 +138,10 @@ In this step, you will deploy the Airflow orchestration engine using a Helm Char
   * export TFVARS\_FILENAME=${PROJECT}-${VENUE}-${SERVICE\_AREA}-${COMPONENT}.tfvars
   * terraform-docs tfvars hcl . --output-file tfvars/${TFVARS\_FILENAME}
   * edit tfvars/${TFVARS\_FILENAME}
-    * Just like before, remove the first/last comment lines and add the values for "project" and "venue"
+    * Just like before, remove the first/last comment lines and dd the values for "project" and "venue"
     * Also enter the values for "airflow\_webserver\_password" (choose one value) and "kubeconfig\_filepath" (enter the value of $KUBECONFIG)
   * Warning: it is recommended to renew the AWS credentials
+  * Make sure that the Docker Daemon is running&#x20;
   * terraform apply --var-file=tfvars/${TFVARS\_FILENAME}
     * If everything looks good, type "yes" to start the deployment process, which will take 20-30 minutes
     * The Airflow deployment should around 15-20 minutes
