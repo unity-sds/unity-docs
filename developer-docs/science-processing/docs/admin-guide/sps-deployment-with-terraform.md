@@ -72,7 +72,8 @@ In this step, you will deploy a Kubernetes cluster onto the AWS infrastructure.
     * echo $KUBECONFIG
   * Verify you can interact with the EKS cluster:
     * kubectl get all -A
-* Later, after the EKS cluster is no more useful, it can be destroyed wit the following command:
+* Later, after the EKS cluster is no more useful, it can be destroyed by selecting the workspace then destroying it:
+  * terraform workspace select -or-create $WORKSPACE
   * terraform destroy --var-file=tfvars/${TFVARS\_FILENAME}
     * If everything looks good, type "yes" to start the destruction process
 
@@ -107,7 +108,8 @@ In this step, you will use a Helm Chart to deploy the Karpenter controller onto 
   * terraform apply --var-file=tfvars/${TFVARS\_FILENAME}
     * If everything looks good, type "yes" to start the deployment process, which will take 20-30 minutes
     * The Karpenter deployment should only take a few minutes
-  * Later, to destroy the Karpenter infrastructure:
+  * Later, to destroy the Karpenter infrastructure, select the workspace then destroy it:
+    * terraform workspace select -or-create $WORKSPACE
     * terraform destroy --var-file=tfvars/${TFVARS\_FILENAME}
       * If everything looks good type "yes"
 
@@ -145,3 +147,7 @@ In this step, you will deploy the Airflow orchestration engine using a Helm Char
   * terraform apply --var-file=tfvars/${TFVARS\_FILENAME}
     * If everything looks good, type "yes" to start the deployment process, which will take 20-30 minutes
     * The Airflow deployment should around 15-20 minutes
+  * Later, to destroy the airflow component, select the workspace then destroy it:
+    * terraform workspace select -or-create $WORKSPACE
+    * terraform destroy --var-file=tfvars/${TFVARS\_FILENAME}
+      * If everything looks good type "yes"
