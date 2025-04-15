@@ -4,7 +4,7 @@ This page describes how to convert and publish your notebook into an executable 
 
 ## Using the Automated Build System
 
-Follow the [jupyter notebook tutorial for automatically building an application package](https://github.com/unity-sds/sounder-sips-tutorial/blob/main/jupyter-notebooks/tutorials/5\_building\_application\_packages.ipynb).
+Follow the [jupyter notebook tutorial for automatically building an application package](https://github.com/unity-sds/sounder-sips-tutorial/blob/main/jupyter-notebooks/tutorials/5_building_application_packages.ipynb).
 
 {% hint style="warning" %}
 Currently, the app pack gen service does not provide much information on status or result of the builds. This is an on-going process on which improvements are being made.&#x20;
@@ -18,12 +18,10 @@ This will allow you to build your own application packages from Jupyter notebook
 
 ### Install the Unity App Generator
 
-A requirement for using the unity application generator is to install it. Currently the install must be manual.
+A requirement for using the unity application generator is to install it.&#x20;
 
 ```
-$ pip install git+https://github.com/unity-sds/app-pack-generator.git
-...
-$ pip install git+https://github.com/unity-sds/unity-app-generator.git 
+$ pip install unity-app-generator
 ...
 $ build_ogc_app -h
 usage: build_ogc_app [-h] [--state_directory STATE_DIRECTORY] {init,build_docker,push_docker,parameters,build_cwl,push_app_registry} ...
@@ -51,7 +49,7 @@ We are now ready to build an application! We will build the [unity-example-appli
 
 #### Initialize the repository for building
 
-Initialize the respository we want to build. If you want to checkout the repository from git to build, run the following command:
+Initialize the repository we want to build. If you want to checkout the repository from git to build, run the following command:
 
 ```
 $ build_ogc_app init https://github.com/unity-sds/unity-example-application my-example-app
@@ -81,8 +79,7 @@ We are now ready to build the docker file for our application. This can take a w
 From within the repository you'd like to build (e.g. `cd unity-example-application` or `cd my-example-app`
 
 ```
-$  build_ogc_app build_docker --no_owner
-build_ogc_app build_docker --no_owner
+$  build_ogc_app build_docker --image_namespace ""
 DEBUG:unity_app_generator.state:Reading existing application state directory /home/gangl/tutorial/my-example-app/.unity_app_gen
 DEBUG:app_pack_generator.git:Using existing Git repository from destination path /home/gangl/tutorial/my-example-app with source https://github.com/unity-sds/unity-example-application
 DEBUG:docker.utils.config:Trying paths: ['/home/gangl/.docker/config.json', '/home/gangl/.dockercfg']
@@ -97,7 +94,7 @@ Successfully tagged unity-example-application:9ecce051
 $
 ```
 
-We use the "no-owner" command above so that we do not include the unity\_sds organization in the built container. This makes it easier to push the container to a registry.
+We use the "image\_namespace" command above so that we do not include the unity\_sds organization in the built container. This makes it easier to push the container to a registry.
 
 ```
 $ docker login
