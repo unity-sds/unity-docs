@@ -8,6 +8,7 @@
 * [Unity Account and Login](mdps-overview/unity-account-and-login.md)
 * [Project Onboarding Procedure](mdps-overview/project-onboarding-procedure.md)
 * [Tutorials](mdps-overview/tutorials/README.md)
+  * [Using the MDPS Portal](mdps-overview/tutorials/using-the-mdps-portal.md)
   * [Learn to Run an Application Package](mdps-overview/tutorials/learn-to-run-an-application-package/README.md)
     * [Getting a Unity Token](mdps-overview/tutorials/learn-to-run-an-application-package/getting-a-unity-token.md)
     * [Log in to Jupyter Hub](mdps-overview/tutorials/learn-to-run-an-application-package/log-in-to-jupyter-hub.md)

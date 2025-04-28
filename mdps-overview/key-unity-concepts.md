@@ -18,7 +18,7 @@ The following key concepts will be explored in this guide:
 
 Unity is a set of managed services that provide an end-to-end tool set for science analysis, algorithm development, and scaled processing. The key services available are:
 
-* **Common User-Interface and Navigation**: A default web-based UI is offered in order to help navigate to the various tools within a particular installation. This also includes a system-status health dashboard.
+* **Common User-Interface and Navigation**: A default web-based UI, AKA "Portal", is offered in order to help navigate to the various tools within a particular installation. This also includes a system-status health dashboard.
 * **Algorithm Development**: the Algorithm Development Service (ADS), which includes a JupyterHub environment, code source-control and the Application Catalog (implemented using Dockstore).
 * **Science-Data Processing**: For deploying applications and job-management activities you will interact with the OGC Processing API provided by the Science Processing Service (SPS) subsystems and the ADES (Application Deployment and Execution Service) user interface.
 * **Data Services**: For data input and output, you interact with the Data Access and Processing API (DAPA) from the Data Services (DS) subsystem. A web-based data-browsing UI is also available to facilitate discovery and management of data.
