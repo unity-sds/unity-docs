@@ -2,7 +2,7 @@
 
 This page describes how a client (for example, a human or a program) can use the popular CURL tool to interact with the Unity SPS through the OGC Processes API to register a new science algorithm and request its execution. We will be assuming that the SPS system is already deployed and the OGC Processes API is available at some URL of the form:&#x20;
 
-* OGC\_PROCESSES\_API=https://unity-dev-httpd-alb-XXXXXXXXXX.us-west-2.elb.amazonaws.com:1234/unity/dev/ogc/
+* OGC\_PROCESSES\_API=https://XXXXXXXXX.execute-api.us-west-2.amazonaws.com/dev/ogc/api/
 
 Interaction with the OGC API will require fetching a Cognito authentication token, detailed in [this tutorial](tutorial-fetching-cognito-authentication-tokens.md). Make sure to fetch and store your authentication token in an easily reference-able variable like `${token}` (used below).
 
