@@ -4,6 +4,8 @@ This page describes how a client (for example, a human or a program) can use the
 
 * OGC\_PROCESSES\_API=https://unity-dev-httpd-alb-XXXXXXXXXX.us-west-2.elb.amazonaws.com:1234/unity/dev/ogc/
 
+Interaction with the OGC API will require fetching a Cognito authentication token, detailed in [this tutorial](tutorial-fetching-cognito-authentication-tokens.md). Make sure to fetch and store your authentication token in an easily reference-able variable like `${token}` (used below).
+
 Let's first consider the case when the desired science algorithm has already been registered with the system. For example, each SPS deployment includes making available the CWL DAG ("Common Workflow Language" "Direct Acyclic Graph"), which can be used to execute any CWL workflow to invoke a generic science algorithm packaged as a Docker container. Later we will show how such a DAG can be registered in the first place.
 
 **Step 1a (optional): List the available processes**
@@ -15,7 +17,7 @@ Let's first consider the case when the desired science algorithm has already bee
 <summary>Request</summary>
 
 ```
-curl -k -X GET "${OGC_PROCESSES_API}/processes" | jq
+curl -k -X GET -H "${token}" "${OGC_PROCESSES_API}/processes" | jq
 ```
 
 </details>
@@ -78,17 +80,19 @@ You will notice that the server response includes a process with identifier "cwl
 
 <summary>Request</summary>
 
-```
-curl -s -X POST "${OGC_PROCESSES_API}/processes/cwl_dag/execution" \
-    -H "Content-Type: application/json" \
+<pre><code><strong>curl -s -X POST "${OGC_PROCESSES_API}/processes/cwl_dag/execution" \
+</strong>    -H "Content-Type: application/json" \
     -H "Prefer: respond-async" \
-    --data-binary @- << EOF | jq '.'
+    -H "${token}" \ 
+    --data-binary @- &#x3C;&#x3C; EOF | jq '.'
     {
         "inputs": {
             "cwl_workflow": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.cwl",
             "cwl_args": "https://raw.githubusercontent.com/unity-sds/sbg-workflows/main/preprocess/sbg-preprocess-workflow.dev.yml",
             "request_instance_type": "r7i.xlarge",
-            "request_storage": "10Gi" 
+            "request_storage": "10Gi",
+            "use_ecr": false,
+            "log_level": 20 
           },
           "outputs": {
             "result": {
@@ -96,8 +100,8 @@ curl -s -X POST "${OGC_PROCESSES_API}/processes/cwl_dag/execution" \
             }
           }
     }
-    EOF
-```
+EOF
+</code></pre>
 
 </details>
 
@@ -172,7 +176,7 @@ You can use the job id returned in the previous step to monitor the job until it
 
 ```
 JOB_ID=7b1173ff-137e-41fa-bfb1-bd133049b4a3
-curl "${OGC_PROCESSES_API}/jobs/${JOB_ID}"
+curl -H "${token}" "${OGC_PROCESSES_API}/jobs/${JOB_ID}"
 ```
 
 </details>
@@ -207,7 +211,7 @@ Or to keep executing the command every few seconds:
 <summary>Request</summary>
 
 ```
-watch -n 5 "curl -s "${OGC_PROCESSES_API}/jobs/${JOB_ID}" | jq"
+watch -n 5 "curl -s -H "${token}" "${OGC_PROCESSES_API}/jobs/${JOB_ID}" | jq"
 ```
 
 </details>
@@ -250,7 +254,7 @@ We will assume that the SPS deployment has been configured to monitor the GitHub
 <summary>Request</summary>
 
 ```
-curl -k -v -X POST -H "Expect:" -H "Content-Type: application/json; charset=utf-8" --data-binary @"./cwl_dag.json" "${OGC_PROCESSES_API}/processes"
+curl -k -v -X POST -H "${token}" -H "Expect:" -H "Content-Type: application/json; charset=utf-8" --data-binary @"./cwl_dag.json" "${OGC_PROCESSES_API}/processes"
 ```
 
 where:
@@ -343,10 +347,6 @@ Process cwl_dag deployed successfully%
 
 Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match the filename of the DAG in the GitHub repository, at the specified path and branch, without the ".py" extension.
 
-<details>
-
-<summary>Response</summary>
-
 ```
 < HTTP/1.1 201 Created
 < Date: Thu, 30 Jan 2025 11:55:45 GMT
@@ -357,8 +357,6 @@ Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match 
 Process cwl_dag deployed successfully%      
 ```
 
-</details>
-
 Step 2b: Unregister a process
 
 <details>
@@ -366,7 +364,7 @@ Step 2b: Unregister a process
 <summary>Request</summary>
 
 ```
-curl -kv -X DELETE -H "Content-Type: application/json; charset=utf-8" "${OGC_PROCESSES_API}/processes/cwl_dag"
+curl -kv -X DELETE -H "${token}" -H "Content-Type: application/json; charset=utf-8" "${OGC_PROCESSES_API}/processes/cwl_dag"
 ```
 
 </details>
