@@ -6,12 +6,14 @@ description: >-
 
 # Tutorial: Fetching Cognito Authentication Tokens
 
+These tokens are venue-specific, and have an expiration time of about an hour (3600s).
+
 #### Requirements
 
 * Unity username and password
-* The appropriate Cognito Client ID for the project/venue
+* The appropriate Cognito Client ID for the venue
   * This can be fetched from (in the AWS Console): **Amazon Cognito** -> User Pools -> `unity-user-pool` -> Applications (App Clients), and finding an App Client that doesn't have a _client secret_
-    * Ex. in Unity-Dev, use the `unity-human-to-app-client`'s client id
+    * Ex. in the Unity-Dev venue, use the `unity-human-to-app-client`'s client id
 
 #### Objectives
 
