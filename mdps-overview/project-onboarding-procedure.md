@@ -70,7 +70,7 @@ description: >-
     * connect to instance via AWS SSM connection
     * `sudo su - ubuntu`
     * `cd` unity-monorepo/tests`/nightly_tests ; git pull`
-    * `./run.sh --destroy false --run-tests false --project-name PROJECT --venue-name VENUE`
+    * `./run.sh --destroy false --run-tests false --project-name PROJECT --venue-name VENUE --mc-sha main`
     * NOTE: If this is the first time deploying to this AWS account, you may have to manually enter a few SSM parameters such as:
       * `/unity/cs/github/username`
       * `/unity/cs/github/useremail`
