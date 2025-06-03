@@ -8,7 +8,7 @@ Interaction with the OGC API will require fetching a Cognito authentication toke
 
 Let's first consider the case when the desired science algorithm has already been registered with the system. For example, each SPS deployment includes making available the CWL DAG ("Common Workflow Language" "Direct Acyclic Graph"), which can be used to execute any CWL workflow to invoke a generic science algorithm packaged as a Docker container. Later we will show how such a DAG can be registered in the first place.
 
-**Step 1a (optional): List the available processes**
+## **Step 1a (optional): List the available processes**
 
 
 
@@ -74,7 +74,7 @@ curl -k -X GET -H "${token}" "${OGC_PROCESSES_API}/processes" | jq
 
 You will notice that the server response includes a process with identifier "cwl\_dag", which we will want to trigger next.
 
-**Step 2a: Execute a process (i.e. create a job)**
+## **Step 2a: Execute a process (i.e. create a job)**
 
 <details>
 
@@ -166,7 +166,7 @@ EOF
 
 Note that the response contains the job id ("7b1173ff-137e-41fa-bfb1-bd133049b4a3") and its status ("accepted").&#x20;
 
-**Step 3a: Monitor the job**
+## **Step 3a: Monitor the job**
 
 You can use the job id returned in the previous step to monitor the job until it completes.
 
@@ -247,7 +247,7 @@ Let's consider the following DAG: [https://github.com/unity-sds/unity-sps/blob/d
 
 We will assume that the SPS deployment has been configured to monitor the GitHub repository [https://github.com/unity-sds/unity-sps](https://github.com/unity-sds/unity-sps) at the path "airflow/dags" in the brach "main".
 
-**Step 1b: Register a process**
+## **Step 1b: Register a process**
 
 <details>
 
@@ -357,7 +357,7 @@ Note that the HTTP request contains the dag id "cwl\_dag". This id _must_ match 
 Process cwl_dag deployed successfully%      
 ```
 
-Step 2b: Unregister a process
+## Step 2b: Unregister a process
 
 <details>
 
@@ -382,8 +382,96 @@ curl -kv -X DELETE -H "${token}" -H "Content-Type: application/json; charset=utf
 
 </details>
 
-Note that if the DAG author wants to test a new version of the DAG, they will need to perform the following steps:
+Note that this removes the DAG from the SPS system.
 
-* Check in the new version of the DAG in the GitHub repository
-* First use the OGC API to unregister the DAG
-* The use the OGC API to register the DAG again (which will trigger the new version to be deployed to the SPS system)
+## Step 1c: Update a process
+
+<details>
+
+<summary><strong>Request</strong> </summary>
+
+```
+curl --location "${OGC_PROCESSES_API}/processes" \
+--header "Expect;" \
+--header "Content-Type: application/json; charset=utf-8" \
+--header "${token}" \
+--data-binary @"./cwl_dag.json"
+```
+
+where:
+
+`cat cwl_dag.json`&#x20;
+
+```
+{
+  "executionUnit": {
+    "image": "ghcr.io/unity-sds/unity-sps/sps-docker-cwl:2.4.0",
+    "type": "docker"
+  },
+  "processDescription": {
+    "description": "This process executes any CWL workflow.",
+    "id": "cwl_dag",
+    "inputs": {
+      "cwl_args": {
+        "description": "The URL of the CWL workflow's YAML parameters file",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "format": "uri",
+          "type": "string"
+        },
+        "title": "CWL Workflow Parameters URL"
+      },
+      "cwl_workflow": {
+        "description": "The URL of the CWL workflow",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "format": "uri",
+          "type": "string"
+        },
+        "title": "CWL Workflow URL"
+      },
+      "request_instance_type": {
+        "description": "The specific EC2 instance type requested for the job",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "type": "string"
+        },
+        "title": "Requested EC2 Type"
+      },
+      "request_storage": {
+        "description": "The amount of storage requested for the job",
+        "maxOccurs": 1,
+        "minOccurs": 1,
+        "schema": {
+          "type": "string"
+        },
+        "title": "Requested Storage"
+      }
+    },
+    "jobControlOptions": [
+      "async-execute"
+    ],
+    "outputs": {
+      "result": {
+        "description": "The result of the SBG Preprocess Workflow execution",
+        "schema": {
+          "$ref": "some-ref"
+        },
+        "title": "Process Result"
+      }
+    },
+    "title": "Generic CWL Process",
+    "version": "1.0.0"
+  }
+}
+```
+
+</details>
+
+The steps to develop and update a DAG include:
+
+1. Modify the DAG and check in the new version to the GitHub repository
+2. Send a `PUT` request to the OGC Processes API to update the DAG which deploys the updated DAG code to the SPS system
