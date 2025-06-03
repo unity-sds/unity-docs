@@ -471,6 +471,16 @@ where:
 
 </details>
 
+<details>
+
+<summary><strong>Response</strong></summary>
+
+```
+ HTTP/1.1 204 No Content
+```
+
+</details>
+
 The steps to develop and update a DAG include:
 
 1. Modify the DAG and check in the new version to the GitHub repository
