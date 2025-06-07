@@ -143,6 +143,7 @@
   * [Docs](developer-docs/science-processing/docs/README.md)
     * [Users Guide](developer-docs/science-processing/docs/users-guide/README.md)
       * [Tutorial: Register and Execute a CWL Workflow](developer-docs/science-processing/docs/users-guide/tutorial-register-and-execute-a-cwl-workflow.md)
+      * [Tutorial: Large Scale Testing](developer-docs/science-processing/docs/users-guide/tutorial-large-scale-testing.md)
     * [Developers Guide](developer-docs/science-processing/docs/developers-guide.md)
       * [OGC Processes API Overview](developer-docs/science-processing/docs/developers-guide/ogc-processes-api-overview.md)
       * [Tutorial: Fetching Cognito Authentication Tokens](developer-docs/science-processing/docs/developers-guide/tutorial-fetching-cognito-authentication-tokens.md)
