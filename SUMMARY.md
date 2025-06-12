@@ -154,6 +154,7 @@
       * [🧱 SPS Deployment with Terraform](developer-docs/science-processing/docs/admin-guide/sps-deployment-with-terraform.md)
       * [🧱 Interacting with an Existing SPS Deployment](developer-docs/science-processing/docs/admin-guide/interacting-with-an-existing-sps-deployment.md)
       * [🛠️ SPS Airflow Custom Docker Image Build Instructions](developer-docs/science-processing/docs/admin-guide/sps-airflow-custom-docker-image-build-instructions.md)
+      * [Creating an SPS Release](developer-docs/science-processing/docs/admin-guide/creating-an-sps-release.md)
       * [SPS Post Deployment Operations](developer-docs/science-processing/docs/admin-guide/sps-post-deployment-operations.md)
       * [SPS Deployment with Marketplace](developer-docs/science-processing/docs/admin-guide/sps-deployment-with-marketplace/README.md)
         * [SPS-EKS Configuration](developer-docs/science-processing/docs/admin-guide/sps-deployment-with-marketplace/sps-eks-configuration.md)
