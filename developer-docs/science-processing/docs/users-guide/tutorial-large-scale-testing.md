@@ -330,3 +330,6 @@ Let's overwrite the old router configuration with the one we created:
 aws s3 cp srl_router.yaml <value of ROUTER_CFG_URL>
 ```
 
+## Demo Video of Large Scaling Test
+
+[https://drive.google.com/file/d/1CZ1U0AOUy8bzm9HDWlq6YUVH75InzyEG/view?usp=sharing](https://drive.google.com/file/d/1CZ1U0AOUy8bzm9HDWlq6YUVH75InzyEG/view?usp=sharing)
